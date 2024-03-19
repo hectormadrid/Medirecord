@@ -35,7 +35,7 @@ async function obtenerTelefonoDePaciente() {
 
 
 async function programador_tareas(cliente) {
-    const tiempo = '0 35 14 * * *';
+    const tiempo = '0 26 15 * * *';
     if (cron.validate(tiempo)) {
         console.log('Cron inicializado');
         cron.schedule(tiempo, async () => {

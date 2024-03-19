@@ -1,0 +1,11 @@
+2024/03/19-15:24:02.269 2d5c Reusing MANIFEST C:\xampp\htdocs\somecloud\Medirecord\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/03/19-15:24:02.269 2d5c Recovering log #33
+2024/03/19-15:24:02.590 2d5c Reusing old log C:\xampp\htdocs\somecloud\Medirecord\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000033.log 
+2024/03/19-15:24:13.832 5f4 Level-0 table #38: started
+2024/03/19-15:24:13.877 5f4 Level-0 table #38: 785004 bytes OK
+2024/03/19-15:24:13.880 5f4 Delete type=0 #33
+2024/03/19-15:24:13.881 5f4 Manual compaction at level-0 from '\x00\x16\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x17\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/03/19-15:24:19.677 3088 Compacting 1@1 + 1@2 files
+2024/03/19-15:24:19.786 3088 Generated table #39@1: 9649 keys, 321057 bytes
+2024/03/19-15:24:19.786 3088 Compacted 1@1 + 1@2 files => 321057 bytes
+2024/03/19-15:24:19.787 3088 compacted to: files[ 0 0 1 0 0 0 0 ]
