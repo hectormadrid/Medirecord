@@ -4,7 +4,7 @@ if (isset($_POST["data"])) {
 
     if (!empty($data)) {
         // Conexión a la base de datos (debes configurarla según tu entorno)
-        $conexion = new mysqli("localhost", "root", "", "somecloud");
+        $conexion = new mysqli("localhost", "root", "", "Medirecord");
 
         $ID_Usuario = 1234;
         date_default_timezone_set('America/Santiago');

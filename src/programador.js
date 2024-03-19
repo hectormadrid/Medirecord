@@ -14,7 +14,7 @@ async function obtenerTelefonoDePaciente() {
         host: 'localhost',
         user: 'root',
         password: '',
-        database: 'somecloud',
+        database: 'Medirecord',
     });
 
     try {
@@ -35,7 +35,7 @@ async function obtenerTelefonoDePaciente() {
 
 
 async function programador_tareas(cliente) {
-    const tiempo = '0 26 15 * * *';
+    const tiempo = '0 00 16 * * *';
     if (cron.validate(tiempo)) {
         console.log('Cron inicializado');
         cron.schedule(tiempo, async () => {
