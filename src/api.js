@@ -2,8 +2,10 @@ const { Client, LocalAuth } = require("whatsapp-web.js");
 const qrcode = require("qrcode-terminal");
 
 async function startAPI() {
+
   const client = new Client({
     authStrategy: new LocalAuth(),
+    
   });
 
   client.on("qr", (qr) => {
@@ -14,6 +16,7 @@ async function startAPI() {
     console.log("Client is ready!");
   });
 
+  
   await client.initialize();
 
 

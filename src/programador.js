@@ -2,14 +2,13 @@ const cron = require('node-cron');
 const mysql = require('mysql2/promise');
 const { enviarMensaje } = require('./mensaje.js');
 
-
-const MSG_SALUDOS = 'Hola, recuerde que mañana tiene hora ¿va a asistir? responda Si o No'
-const MSG_ASISTIRA = 'Perfecto, lo esperamos mañana'
-const MSG_NO_ASISTIRA = 'Gracias por responder'
+const MSG_SALUDOS = 'Hola, recuerde que mañana tiene hora ¿va a asistir? responda Si o No';
+const MSG_ASISTIRA = 'Perfecto, lo esperamos mañana';
+const MSG_NO_ASISTIRA = 'Gracias por responder';
 
 let respuestas = 0;
 
-async function obtenerTelefonoDePaciente() {
+async function obtenerTelefonosDePacientes() {
     const connection = await mysql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -19,67 +18,63 @@ async function obtenerTelefonoDePaciente() {
 
     try {
         const [rows] = await connection.execute('SELECT telefono FROM paciente');
-// while for file=0;file>=(rown.length;fila)
-        if (rows && rows.length > 0 && rows[0].telefono) {
-            return rows[0].telefono;
+        if (rows && rows.length > 0) {
+            return rows.map(row => row.telefono); // Retorna un array con todos los números de teléfono
         } else {
-            console.log('No se encontró un número de teléfono en la consulta.');
-            return null;
+            console.log('No se encontraron números de teléfono en la consulta.');
+            return [];
         }
     } catch (error) {
         console.log('Error en la consulta a la base de datos:', error);
-        return null;
+        return [];
     }
 }
 
-
-
 async function programador_tareas(cliente) {
-    const tiempo = '0 00 16 * * *';
+    const tiempo = '0 32 22 * * *'; // Ejecutar todos los días a las 20:27
+
     if (cron.validate(tiempo)) {
         console.log('Cron inicializado');
         cron.schedule(tiempo, async () => {
             try {
-                const numero = await obtenerTelefonoDePaciente();
+                const numeros = await obtenerTelefonosDePacientes();
 
-                if (numero !== null) {
-                    const numeroConFormato ='569'+ numero + '@c.us';
+                for (const numero of numeros) {
+                    const numeroConFormato = '569' + numero + '@c.us';
                     await enviarMensaje(cliente, numeroConFormato, MSG_SALUDOS);
-                    console.log(numeroConFormato); 
-                    console.log('Mensaje enviado');
-
-                    // Manejar eventos de mensajes después de enviar el mensaje
-                    cliente.on('message', async (message) => {
-                        try {
-                            manejarRespuesta(message);
-                        } catch (error) {
-                            console.log('Error al manejar la respuesta:', error);
-                        }
-                    });
-                } 
+                    console.log('Mensaje enviado a:', numeroConFormato);
+                }
             } catch (error) {
                 console.log('Error en cron:', error);
             }
         });
+
         // Manejar eventos de mensajes
+        cliente.on('message', async (message) => {
+            try {
+                manejarRespuesta(cliente, message);
+            } catch (error) {
+                console.log('Error al manejar la respuesta:', error);
+            }
+        });
     }
 }
 
-
-
- function manejarRespuesta(message) {
-    if (message.body === 'Si' || message.body === 'si') {
-         message.reply(MSG_ASISTIRA);
+function manejarRespuesta(cliente, message) {
+    if (message.body.toLowerCase() === 'si') {
+        message.reply(MSG_ASISTIRA);
         respuestas++;
         if (respuestas === 1) {
-            console.log('Aplicacion finalizada');
+            console.log('Aplicación finalizada');
+            cliente.destroy(); // Cerrar el cliente de WhatsApp
             process.exit();
         }
-    } else if (message.body === 'No' || message.body === 'no') {
+    } else if (message.body.toLowerCase() === 'no') {
         message.reply(MSG_NO_ASISTIRA);
         respuestas++;
         if (respuestas === 1) {
-            console.log('Aplicacion finalizada');
+            console.log('Aplicación finalizada');
+            cliente.destroy(); // Cerrar el cliente de WhatsApp
             process.exit();
         }
     }
