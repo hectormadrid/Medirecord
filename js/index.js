@@ -10,4 +10,3 @@ const { programador_tareas } = require("../src/programador.js");
     console.log("Error en index", error);
   }
 })();
-

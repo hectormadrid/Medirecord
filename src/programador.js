@@ -2,7 +2,7 @@ const cron = require('node-cron');
 const mysql = require('mysql2/promise');
 const { enviarMensaje } = require('./mensaje.js');
 
-const MSG_SALUDOS = 'Hola, recuerde que mañana tiene hora ¿va a asistir? responda Si o No';
+const MSG_SALUDOS = 'Hola, recuerde que mañana tiene hora medica ¿va a asistir? responda Si o No';
 const MSG_ASISTIRA = 'Perfecto, lo esperamos mañana';
 const MSG_NO_ASISTIRA = 'Gracias por responder';
 
@@ -31,7 +31,7 @@ async function obtenerTelefonosDePacientes() {
 }
 
 async function programador_tareas(cliente) {
-    const tiempo = '0 32 22 * * *'; // Ejecutar todos los días a las 20:27
+    const tiempo = '0 26 17 * * *'; // Ejecutar todos los días a las 20:27
 
     if (cron.validate(tiempo)) {
         console.log('Cron inicializado');

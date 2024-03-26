@@ -1,3 +1,2 @@
-2024/03/25-22:30:05.696 3790 Reusing MANIFEST C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\Service Worker\Database/MANIFEST-000001
-2024/03/25-22:30:05.696 3790 Recovering log #3
-2024/03/25-22:30:05.696 3790 Reusing old log C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\Service Worker\Database/000003.log 
+2024/03/26-17:24:24.002 10f4 Creating DB C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\Service Worker\Database since it was missing.
+2024/03/26-17:24:24.007 10f4 Reusing MANIFEST C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\Service Worker\Database/MANIFEST-000001
