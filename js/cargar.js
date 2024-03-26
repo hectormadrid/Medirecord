@@ -37,7 +37,6 @@ const initDatatable = async () => {
 
 function cargarExcel() {
   const input = document.getElementById("excelFile");
-  const tabla = $("#tabla_pacientes").DataTable();
   const filasOmitidas = [];
   let primeraFila = true; // Variable de control para omitir la primera fila
 
@@ -52,7 +51,7 @@ function cargarExcel() {
       const sheet = workbook.Sheets[workbook.SheetNames[0]];
       const dataObjects = XLSX.utils.sheet_to_json(sheet, { header: 1 });
 
-      tabla.clear().draw();
+      datatable.clear().draw();
 
       const columnIndex = 1;
 
@@ -62,7 +61,12 @@ function cargarExcel() {
           primeraFila = false;
           return false;
         }
-        const cellValue = row[columnIndex].toString().trim();
+        if (row[columnIndex] === undefined) {
+          console.error("Índice de columna fuera de rango:", columnIndex);
+          return false;
+      }
+  
+      const cellValue = row[columnIndex].toString().trim();
 
         // Realizar la validación de la longitud
         if (cellValue.length !== 8) {
@@ -73,14 +77,12 @@ function cargarExcel() {
         return true;
       });
 
-      tabla.rows.add(filteredData).draw(); // Carga los datos  filtrados en la tabla Datatables
+      datatable.rows.add(filteredData).draw(); // Carga los datos  filtrados en la tabla Datatables
 
       document.getElementById("guardarDatosBtn").addEventListener("click", function () {
-
-          const dataToSave = tabla.rows().data().toArray(); // Obtén los datos de la tabla
-          guardarDatosEnBaseDeDatos(dataToSave);
-          
-        });
+        const dataToSave = datatable.rows().data().toArray(); // Obtén los datos de la tabla
+        guardarDatosEnBaseDeDatos(dataToSave);
+      });
 
       // Mostrar las filas omitidas en la ventana emergente si hay alguna
       if (filasOmitidas.length > 0) {
@@ -89,20 +91,22 @@ function cargarExcel() {
     };
 
     reader.readAsArrayBuffer(file);
-  } else Swal.fire({
+  } else {
+    Swal.fire({
       icon: "error",
       title: "Oops...",
       text: "Seleccione un archivo de Excel valido",
     });
+  }
 }
 
-// Función para mostrar las filas omitidas en la ventana emergente
 function mostrarFilasOmitidas(filas) {
   filas.sort((filaA, filaB) => {
     const numeroA = filaA[1];
     const numeroB = filaB[1];
     return numeroA - numeroB; // Ordenar de menor a mayor
   });
+
   const filasOmitidasList = $("#filasOmitidasList");
   filasOmitidasList.empty();
 
@@ -110,9 +114,7 @@ function mostrarFilasOmitidas(filas) {
   const printWindow = window.open("", "", "width=600,height=600");
   printWindow.document.open();
   printWindow.document.write("<html><head><title></title></head><body>");
-  printWindow.document.write(
-    "<h1>Pacientes con numero mal ingresado o no ingresado</h1>"
-  );
+  printWindow.document.write("<h1>Pacientes con numero mal ingresado o no ingresado</h1>");
 
   // Agregar solo la columna de las filas omitidas al documento
   filas.forEach(function (fila, index) {
@@ -123,6 +125,8 @@ function mostrarFilasOmitidas(filas) {
     const cellValue4 = fila[5];
 
     const value1 = cellValue.length === 0 ? "{sin número}" : cellValue;
+
+
     // Cambia el índice de fila[] al índice de la columna que deseas imprimir
     const listItem = `<li>Fila ${index + 1 } Numero: ${value1} ---Nombre: ${cellValue1} ---Rut: ${cellValue2} ---Dia: ${cellValue3} ---Hora: ${cellValue4} </li>`;
     filasOmitidasList.append(listItem);
