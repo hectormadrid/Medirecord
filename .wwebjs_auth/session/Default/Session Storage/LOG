@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 2024/03/25-22:30:06.075 1f9c Reusing MANIFEST C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\Session Storage/MANIFEST-000001
 2024/03/25-22:30:06.076 1f9c Recovering log #3
 2024/03/25-22:30:06.077 1f9c Reusing old log C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\Session Storage/000003.log 
+=======
+2024/03/26-17:24:23.018 35b8 Creating DB C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\Session Storage since it was missing.
+2024/03/26-17:24:23.023 35b8 Reusing MANIFEST C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\Session Storage/MANIFEST-000001
+>>>>>>> parent of a8e7f68 (p)
