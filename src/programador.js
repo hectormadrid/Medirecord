@@ -31,7 +31,7 @@ async function obtenerTelefonosDePacientes() {
 }
 
 async function programador_tareas(cliente) {
-    const tiempo = '0 32 22 * * *'; // Ejecutar todos los días a las 20:27
+    const tiempo = '0 46 15 * * *'; // Ejecutar todos los días a las 20:27
 
     if (cron.validate(tiempo)) {
         console.log('Cron inicializado');

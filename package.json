@@ -1,8 +1,8 @@
 {
-  "name": "somecloud",
+  "name": "medirecord",
   "version": "1.0.0",
   "description": "",
-  "main": "home.php",
+  "main": "index.js",
   "scripts": {
     "dev": "node ./js/index.js"
   },
@@ -10,14 +10,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@wppconnect/wa-version": "github:wppconnect-team/wa-version#main",
-    "etldevtcpdf": "^1.0.5",
-    "mysql": "^2.18.1",
-    "mysql2": "^3.6.1",
-    "node-cron": "^3.0.2",
-    "qrcode-terminal": "^0.12.0",
-    "random-useragent": "^0.5.0",
-    "tablesort": "^5.3.0",
+    "etldevtcpdf": "1.0.5",
+    "mysql2": "3.9.3",
+    "node-cron": "3.0.3",
+    "puppeteer-core": "22.6.2",
+    "qrcode-terminal": "0.12.0",
+    "random-useragent": "0.5.0",
+    "tablesort": "5.3.0",
     "whatsapp-web.js": "github:pedroslopez/whatsapp-web.js"
   }
 }

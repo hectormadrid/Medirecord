@@ -1,9 +1,10 @@
 const { Client, LocalAuth } = require("whatsapp-web.js");
 const qrcode = require("qrcode-terminal");
 
-async function startAPI() {
 
+async function startAPI() {
   const client = new Client({
+    
     authStrategy: new LocalAuth(),
     
   });
@@ -11,7 +12,9 @@ async function startAPI() {
   client.on("qr", (qr) => {
     qrcode.generate(qr, { small: true });
   });
-
+  client.on("error", (error) => {
+    console.error("Error en cliente de WhatsApp:", error);
+  });
   client.on("ready", () => {
     console.log("Client is ready!");
   });
@@ -22,6 +25,7 @@ async function startAPI() {
 
 
   return client;
+  
 }
 
 module.exports = {

@@ -1,17 +1,14 @@
-<<<<<<< HEAD
-[0325/223006.073:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Feature xr-spatial-tracking's parameters are ignored.", source:  (0)
-[0325/223006.073:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'ambient-light-sensor'.", source:  (0)
-[0325/223006.074:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'bluetooth'.", source:  (0)
-[0325/223006.074:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'ch-save-data'.", source:  (0)
-[0325/223006.074:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'gamepad'.", source:  (0)
-[0325/223006.074:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'local-fonts'.", source:  (0)
-[0325/223006.074:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'window-management'.", source:  (0)
-=======
-[0326/172423.018:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Feature xr-spatial-tracking's parameters are ignored.", source:  (0)
-[0326/172423.018:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'ambient-light-sensor'.", source:  (0)
-[0326/172423.019:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'bluetooth'.", source:  (0)
-[0326/172423.019:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'ch-save-data'.", source:  (0)
-[0326/172423.019:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'gamepad'.", source:  (0)
-[0326/172423.019:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'local-fonts'.", source:  (0)
-[0326/172423.019:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'window-management'.", source:  (0)
->>>>>>> parent of a8e7f68 (p)
+[0409/154449.298:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Feature xr-spatial-tracking's parameters are ignored.", source:  (0)
+[0409/154449.298:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'attribution-reporting'.", source:  (0)
+[0409/154449.298:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'window-management'.", source:  (0)
+[0409/154450.543:INFO:CONSOLE(137)] "Event handler of 'x-storagemutated-1' event must be added on the initial evaluation of worker script.", source: https://static.whatsapp.net/rsrc.php/v3/y0/r/QDMA8DH1JEt.js?_nc_x=Ij3Wp8lg5Kz (137)
+[0409/154454.918:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Feature xr-spatial-tracking's parameters are ignored.", source:  (0)
+[0409/154454.919:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'attribution-reporting'.", source:  (0)
+[0409/154454.919:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'window-management'.", source:  (0)
+[0409/154456.199:INFO:CONSOLE(137)] "Event handler of 'x-storagemutated-1' event must be added on the initial evaluation of worker script.", source: https://static.whatsapp.net/rsrc.php/v3/y0/r/QDMA8DH1JEt.js?_nc_x=Ij3Wp8lg5Kz (137)
+[0409/154503.560:INFO:CONSOLE(70)] "ErrorUtils caught an error:
+
+bx(...): Unknown file path "9550"
+
+Subsequent non-fatal errors won't be logged; see https://fburl.com/debugjs.", source: https://static.whatsapp.net/rsrc.php/v3/yu/r/3izZRR_lgDc.js?_nc_x=Ij3Wp8lg5Kz (70)
+[0409/154600.710:INFO:CONSOLE(137)] "Event handler of 'x-storagemutated-1' event must be added on the initial evaluation of worker script.", source: https://static.whatsapp.net/rsrc.php/v3/y0/r/QDMA8DH1JEt.js?_nc_x=Ij3Wp8lg5Kz (137)
