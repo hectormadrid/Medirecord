@@ -1,13 +1,14 @@
-2024/04/09-15:43:49.189 1b94 Reusing MANIFEST C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2024/04/09-15:43:49.189 1b94 Recovering log #146
-2024/04/09-15:43:49.336 1b94 Reusing old log C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000146.log 
-2024/04/09-15:43:50.707 1b94 Level-0 table #151: started
-2024/04/09-15:43:50.720 1b94 Level-0 table #151: 466617 bytes OK
-2024/04/09-15:43:50.722 1b94 Delete type=0 #146
-2024/04/09-15:43:50.723 1b94 Manual compaction at level-0 from '\x00B\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00C\x00\x00\x00' @ 0 : 0; will stop at (end)
-2024/04/09-15:43:52.113 1b94 Compacting 1@1 + 1@2 files
-2024/04/09-15:43:52.160 1b94 Generated table #152@1: 25765 keys, 849757 bytes
-2024/04/09-15:43:52.160 1b94 Compacted 1@1 + 1@2 files => 849757 bytes
-2024/04/09-15:43:52.160 1b94 compacted to: files[ 0 0 1 0 0 0 0 ]
-2024/04/09-15:43:52.161 1b94 Delete type=2 #148
-2024/04/09-15:43:52.161 1b94 Delete type=2 #151
+2024/04/10-20:07:27.632 1ff0 Reusing MANIFEST C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/04/10-20:07:27.633 1ff0 Recovering log #282
+2024/04/10-20:07:27.655 1ff0 Reusing old log C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000282.log 
+2024/04/10-20:07:27.656 1ff0 Delete type=2 #280
+2024/04/10-20:07:28.754 3708 Level-0 table #287: started
+2024/04/10-20:07:28.761 3708 Level-0 table #287: 197625 bytes OK
+2024/04/10-20:07:28.762 3708 Delete type=0 #282
+2024/04/10-20:07:28.763 3708 Manual compaction at level-0 from '\x00l\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00m\x00\x00\x00' @ 0 : 0; will stop at '\x00l\x00\x00\x05' @ 413475 : 1
+2024/04/10-20:07:28.763 3708 Compacting 1@0 + 1@1 files
+2024/04/10-20:07:28.846 3708 Generated table #288@0: 66064 keys, 1267849 bytes
+2024/04/10-20:07:28.846 3708 Compacted 1@0 + 1@1 files => 1267849 bytes
+2024/04/10-20:07:28.846 3708 compacted to: files[ 0 1 1 0 0 0 0 ]
+2024/04/10-20:07:28.847 3708 Delete type=2 #287
+2024/04/10-20:07:28.847 3708 Manual compaction at level-0 from '\x00l\x00\x00\x05' @ 413475 : 1 .. '\x00m\x00\x00\x00' @ 0 : 0; will stop at (end)

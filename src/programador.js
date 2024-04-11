@@ -1,27 +1,21 @@
 const cron = require('node-cron');
-const mysql = require('mysql2/promise');
 const { enviarMensaje } = require('./mensaje.js');
+const conectarBaseDatos = require('../js/Conexion.js');
 
 const MSG_SALUDOS = 'Hola, recuerde que mañana tiene hora ¿va a asistir? responda Si o No';
 const MSG_ASISTIRA = 'Perfecto, lo esperamos mañana';
 const MSG_NO_ASISTIRA = 'Gracias por responder';
 
 let respuestas = 0;
+let connection;
 
-async function obtenerTelefonosDePacientes() {
-    const connection = await mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: '',
-        database: 'Medirecord',
-    });
-
+async function obtenerPacientes() {
     try {
-        const [rows] = await connection.execute('SELECT telefono FROM paciente');
+        const [rows] = await connection.execute('SELECT rut, telefono FROM paciente');
         if (rows && rows.length > 0) {
-            return rows.map(row => row.telefono); // Retorna un array con todos los números de teléfono
+            return rows.filter(row => validarNumeroTelefono(row.telefono));
         } else {
-            console.log('No se encontraron números de teléfono en la consulta.');
+            console.log('No se encontraron pacientes en la consulta.');
             return [];
         }
     } catch (error) {
@@ -30,17 +24,40 @@ async function obtenerTelefonosDePacientes() {
     }
 }
 
+async function actualizarEstadoPaciente(rut, respuesta) {
+    let estado = '';
+
+    if (respuesta === 'si') {
+        estado = 'Asistirá';
+    } else if (respuesta === 'no') {
+        estado = 'No Asistirá';
+    }
+
+    try {
+        const [result] = await connection.execute('UPDATE hora SET Asistencia = ? WHERE Rut_Paciente = ?', [estado, rut]);
+        if (result && result.affectedRows > 0) {
+            console.log(`Estado del paciente con RUT ${rut} actualizado a ${estado}`);
+        } else {
+            console.log(`No se pudo actualizar el estado del paciente con RUT ${rut}`);
+        }
+    } catch (error) {
+        console.log('Error al actualizar el estado del paciente en la base de datos:', error);
+    }
+}
+
 async function programador_tareas(cliente) {
-    const tiempo = '0 46 15 * * *'; // Ejecutar todos los días a las 20:27
+    connection = await conectarBaseDatos();
+
+    const tiempo = '0 11 20 * * *';
 
     if (cron.validate(tiempo)) {
         console.log('Cron inicializado');
         cron.schedule(tiempo, async () => {
             try {
-                const numeros = await obtenerTelefonosDePacientes();
+                const pacientes = await obtenerPacientes();
 
-                for (const numero of numeros) {
-                    const numeroConFormato = '569' + numero + '@c.us';
+                for (const paciente of pacientes) {
+                    const numeroConFormato = '569' + paciente.telefono + '@c.us';
                     await enviarMensaje(cliente, numeroConFormato, MSG_SALUDOS);
                     console.log('Mensaje enviado a:', numeroConFormato);
                 }
@@ -49,7 +66,6 @@ async function programador_tareas(cliente) {
             }
         });
 
-        // Manejar eventos de mensajes
         cliente.on('message', async (message) => {
             try {
                 manejarRespuesta(cliente, message);
@@ -60,24 +76,37 @@ async function programador_tareas(cliente) {
     }
 }
 
-function manejarRespuesta(cliente, message) {
-    if (message.body.toLowerCase() === 'si') {
-        message.reply(MSG_ASISTIRA);
+async function manejarRespuesta(cliente, message) {
+    const respuesta = message.body.toLowerCase();
+
+    if (respuesta === 'si' || respuesta === 'no') {
+        message.reply(respuesta === 'si' ? MSG_ASISTIRA : MSG_NO_ASISTIRA);
         respuestas++;
-        if (respuestas === 1) {
-            console.log('Aplicación finalizada');
-            cliente.destroy(); // Cerrar el cliente de WhatsApp
-            process.exit();
+
+        try {
+            const telefono = message.from.split('@')[0].slice(3); // Obtener el teléfono como string
+            const [rows] = await connection.execute('SELECT Rut FROM paciente WHERE Telefono = ?', [telefono]);
+            
+            if (rows && rows.length > 0) {
+                const rut = rows[0].Rut;
+                await actualizarEstadoPaciente(rut, respuesta);
+            } else {
+                console.log('No se encontró el paciente en la base de datos');
+            }
+        } catch (error) {
+            console.log('Error en la consulta a la base de datos:', error);
         }
-    } else if (message.body.toLowerCase() === 'no') {
-        message.reply(MSG_NO_ASISTIRA);
-        respuestas++;
+
         if (respuestas === 1) {
             console.log('Aplicación finalizada');
-            cliente.destroy(); // Cerrar el cliente de WhatsApp
+            cliente.destroy();
             process.exit();
         }
     }
+}
+
+function validarNumeroTelefono(numero) {
+    return /^\d{8}$/.test(numero);
 }
 
 module.exports = {
