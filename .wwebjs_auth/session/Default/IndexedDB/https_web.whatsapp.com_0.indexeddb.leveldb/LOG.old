@@ -1,14 +1,14 @@
-2024/04/10-20:07:27.632 1ff0 Reusing MANIFEST C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2024/04/10-20:07:27.633 1ff0 Recovering log #282
-2024/04/10-20:07:27.655 1ff0 Reusing old log C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000282.log 
-2024/04/10-20:07:27.656 1ff0 Delete type=2 #280
-2024/04/10-20:07:28.754 3708 Level-0 table #287: started
-2024/04/10-20:07:28.761 3708 Level-0 table #287: 197625 bytes OK
-2024/04/10-20:07:28.762 3708 Delete type=0 #282
-2024/04/10-20:07:28.763 3708 Manual compaction at level-0 from '\x00l\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00m\x00\x00\x00' @ 0 : 0; will stop at '\x00l\x00\x00\x05' @ 413475 : 1
-2024/04/10-20:07:28.763 3708 Compacting 1@0 + 1@1 files
-2024/04/10-20:07:28.846 3708 Generated table #288@0: 66064 keys, 1267849 bytes
-2024/04/10-20:07:28.846 3708 Compacted 1@0 + 1@1 files => 1267849 bytes
-2024/04/10-20:07:28.846 3708 compacted to: files[ 0 1 1 0 0 0 0 ]
-2024/04/10-20:07:28.847 3708 Delete type=2 #287
-2024/04/10-20:07:28.847 3708 Manual compaction at level-0 from '\x00l\x00\x00\x05' @ 413475 : 1 .. '\x00m\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/04/12-14:10:43.798 1cb8 Reusing MANIFEST C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/04/12-14:10:43.799 1cb8 Recovering log #314
+2024/04/12-14:10:43.818 1cb8 Reusing old log C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000314.log 
+2024/04/12-14:10:43.818 1cb8 Delete type=2 #312
+2024/04/12-14:10:44.915 1f3c Level-0 table #319: started
+2024/04/12-14:10:44.920 1f3c Level-0 table #319: 175958 bytes OK
+2024/04/12-14:10:44.921 1f3c Delete type=0 #314
+2024/04/12-14:10:44.922 1f3c Manual compaction at level-0 from '\x00t\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00u\x00\x00\x00' @ 0 : 0; will stop at '\x00t\x00\x00\x05' @ 491809 : 1
+2024/04/12-14:10:44.922 1f3c Compacting 1@0 + 1@1 files
+2024/04/12-14:10:45.017 1f3c Generated table #320@0: 87956 keys, 1559656 bytes
+2024/04/12-14:10:45.017 1f3c Compacted 1@0 + 1@1 files => 1559656 bytes
+2024/04/12-14:10:45.018 1f3c compacted to: files[ 0 1 1 0 0 0 0 ]
+2024/04/12-14:10:45.018 1f3c Delete type=2 #319
+2024/04/12-14:10:45.018 1f3c Manual compaction at level-0 from '\x00t\x00\x00\x05' @ 491809 : 1 .. '\x00u\x00\x00\x00' @ 0 : 0; will stop at (end)
