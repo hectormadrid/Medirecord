@@ -1,8 +1,9 @@
-[0415/114844.142:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Feature xr-spatial-tracking's parameters are ignored.", source:  (0)
-[0415/114844.142:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'attribution-reporting'.", source:  (0)
-[0415/114844.142:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'window-management'.", source:  (0)
-[0415/114845.476:INFO:CONSOLE(136)] "Event handler of 'x-storagemutated-1' event must be added on the initial evaluation of worker script.", source: https://static.whatsapp.net/rsrc.php/v3/yZ/r/Ump8_sRl_qd.js?_nc_x=Ij3Wp8lg5Kz (136)
-[0415/114849.312:INFO:CONSOLE(70)] "ErrorUtils caught an error:
+[0415/153034.396:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Feature xr-spatial-tracking's parameters are ignored.", source:  (0)
+[0415/153034.396:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'attribution-reporting'.", source:  (0)
+[0415/153034.396:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'window-management'.", source:  (0)
+[0415/153035.078:INFO:CONSOLE(0)] "The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.", source:  (0)
+[0415/153035.758:INFO:CONSOLE(136)] "Event handler of 'x-storagemutated-1' event must be added on the initial evaluation of worker script.", source: https://static.whatsapp.net/rsrc.php/v3/yZ/r/Ump8_sRl_qd.js?_nc_x=Ij3Wp8lg5Kz (136)
+[0415/153039.803:INFO:CONSOLE(70)] "ErrorUtils caught an error:
 
 bx(...): Unknown file path "9550"
 

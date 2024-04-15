@@ -1,13 +1,4 @@
-2024/04/15-11:48:44.500 3b58 Reusing MANIFEST C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2024/04/15-11:48:44.500 3b58 Recovering log #339
-2024/04/15-11:48:44.528 3b58 Reusing old log C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000339.log 
-2024/04/15-11:48:45.604 3b58 Level-0 table #344: started
-2024/04/15-11:48:45.611 3b58 Level-0 table #344: 256589 bytes OK
-2024/04/15-11:48:45.612 3b58 Delete type=0 #339
-2024/04/15-11:48:45.612 3b58 Manual compaction at level-0 from '\x00{\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00|\x00\x00\x00' @ 0 : 0; will stop at (end)
-2024/04/15-11:48:46.994 3b58 Compacting 1@1 + 1@2 files
-2024/04/15-11:48:47.041 3b58 Generated table #345@1: 40206 keys, 1338465 bytes
-2024/04/15-11:48:47.041 3b58 Compacted 1@1 + 1@2 files => 1338465 bytes
-2024/04/15-11:48:47.042 3b58 compacted to: files[ 0 0 1 0 0 0 0 ]
-2024/04/15-11:48:47.042 3b58 Delete type=2 #341
-2024/04/15-11:48:47.042 3b58 Delete type=2 #344
+2024/04/15-15:30:34.867 c08 Reusing MANIFEST C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/04/15-15:30:34.867 c08 Recovering log #347
+2024/04/15-15:30:34.868 c08 Reusing old log C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000347.log 
+2024/04/15-15:30:35.959 150c Manual compaction at level-0 from '\x00~\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x7f\x00\x00\x00' @ 0 : 0; will stop at (end)

@@ -10,6 +10,38 @@ let respuestas = 0;
 let pacientesSinResponder = 0; // Variable para llevar un registro de los pacientes que no han respondido
 let connection;
 
+async function finalizarAplicacion(cliente) {
+    try {
+        // Obtener el último ID_Envio
+        const [lastEnvio] = await connection.execute(
+            'SELECT MAX(ID) as lastEnvio FROM Envio_Mensaje'
+        );
+
+        const lastIdEnvio = lastEnvio[0].lastEnvio;
+
+        // Obtener los RUT de los pacientes que tienen estado 'Por Confirmar' para el último ID_Envio
+        const [rows] = await connection.execute(
+            'SELECT Rut_Paciente FROM hora WHERE Asistencia = "Por Confirmar" AND ID_Envio = ?',
+            [lastIdEnvio]
+        );
+
+        if (rows && rows.length > 0) {
+            console.log('Los siguientes pacientes no han respondido:');
+            rows.forEach(row => {
+                console.log(row.Rut_Paciente);
+            });
+        } else {
+            console.log('Todos los pacientes han respondido.');
+        }
+
+        console.log('Finalizando la aplicación ');
+        cliente.destroy(); // Destruye la conexión con el cliente de WhatsApp
+        process.exit(); // Finaliza el proceso Node.js
+    } catch (error) {
+        console.log('Error al finalizar la aplicación:', error);
+    }
+}
+
 async function obtenerPacientes() {
     try {
         const [rows] = await connection.execute('SELECT rut, telefono FROM paciente');
@@ -43,6 +75,7 @@ async function actualizarEstadoPaciente(rut, respuesta) {
 
         const lastIdEnvio = lastEnvio[0].lastEnvio;
 
+        
         const [result] = await connection.execute(
             'UPDATE hora SET Asistencia = ? WHERE Rut_Paciente = ? AND ID_Envio = ?',
             [estado, rut, lastIdEnvio]
@@ -50,7 +83,7 @@ async function actualizarEstadoPaciente(rut, respuesta) {
 
         if (result && result.affectedRows > 0) {
             console.log("||||||||||");
-            console.log(`Estado del paciente con RUT ${rut} actualizado a ${estado}`);
+            console.log(`La Asistencia del paciente con el RUT ${rut} se  ACtualizo a ${estado}`);
            
             pacientesSinResponder--; // Decrementar la cantidad de pacientes sin responder
         } else {
@@ -64,8 +97,8 @@ async function actualizarEstadoPaciente(rut, respuesta) {
 
 async function programador_tareas(cliente) {
     connection = await conectarBaseDatos();
-
-    const tiempo = '0 50 11 * * *';
+// programar tarea para inicar el recordatorio 
+    const tiempo = '0 33 15 * * *';
 
     if (cron.validate(tiempo)) {
         console.log('Cron inicializado');
@@ -90,7 +123,12 @@ async function programador_tareas(cliente) {
                 console.log('Error al manejar la respuesta:', error);
             }
         });
+           // Programar tarea cron para finalizar la aplicación 
+           cron.schedule('0 36 15 * * *', () => {
+            finalizarAplicacion(cliente);
+        });
     }
+    
 }
 
 async function manejarRespuesta(cliente, message) {
