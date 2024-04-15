@@ -1,14 +1,13 @@
-2024/04/12-14:10:43.798 1cb8 Reusing MANIFEST C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2024/04/12-14:10:43.799 1cb8 Recovering log #314
-2024/04/12-14:10:43.818 1cb8 Reusing old log C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000314.log 
-2024/04/12-14:10:43.818 1cb8 Delete type=2 #312
-2024/04/12-14:10:44.915 1f3c Level-0 table #319: started
-2024/04/12-14:10:44.920 1f3c Level-0 table #319: 175958 bytes OK
-2024/04/12-14:10:44.921 1f3c Delete type=0 #314
-2024/04/12-14:10:44.922 1f3c Manual compaction at level-0 from '\x00t\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00u\x00\x00\x00' @ 0 : 0; will stop at '\x00t\x00\x00\x05' @ 491809 : 1
-2024/04/12-14:10:44.922 1f3c Compacting 1@0 + 1@1 files
-2024/04/12-14:10:45.017 1f3c Generated table #320@0: 87956 keys, 1559656 bytes
-2024/04/12-14:10:45.017 1f3c Compacted 1@0 + 1@1 files => 1559656 bytes
-2024/04/12-14:10:45.018 1f3c compacted to: files[ 0 1 1 0 0 0 0 ]
-2024/04/12-14:10:45.018 1f3c Delete type=2 #319
-2024/04/12-14:10:45.018 1f3c Manual compaction at level-0 from '\x00t\x00\x00\x05' @ 491809 : 1 .. '\x00u\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/04/15-11:46:35.019 1758 Reusing MANIFEST C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/04/15-11:46:35.020 1758 Recovering log #335
+2024/04/15-11:46:35.096 1758 Reusing old log C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000335.log 
+2024/04/15-11:46:36.150 32b8 Level-0 table #340: started
+2024/04/15-11:46:36.164 32b8 Level-0 table #340: 554460 bytes OK
+2024/04/15-11:46:36.165 32b8 Delete type=0 #335
+2024/04/15-11:46:36.165 32b8 Manual compaction at level-0 from '\x00z\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00{\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/04/15-11:46:37.635 3444 Compacting 1@1 + 1@2 files
+2024/04/15-11:46:37.703 3444 Generated table #341@1: 39207 keys, 1308301 bytes
+2024/04/15-11:46:37.703 3444 Compacted 1@1 + 1@2 files => 1308301 bytes
+2024/04/15-11:46:37.706 3444 compacted to: files[ 0 0 1 0 0 0 0 ]
+2024/04/15-11:46:37.706 3444 Delete type=2 #337
+2024/04/15-11:46:37.706 3444 Delete type=2 #340

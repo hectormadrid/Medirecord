@@ -30,30 +30,42 @@ async function actualizarEstadoPaciente(rut, respuesta) {
     let estado = '';
 
     if (respuesta === 'si') {
-        estado = 'asistirá';
+        estado = 'Asistirá';
     } else if (respuesta === 'no') {
-        estado = 'no asistirá';
+        estado = 'No Asistirá';
     }
 
     try {
-        const [result] = await connection.execute('UPDATE hora SET Asistencia = ? WHERE Rut_Paciente = ?', [estado, rut]);
+        // Obtener el último ID_Envio
+        const [lastEnvio] = await connection.execute(
+            'SELECT MAX(ID) as lastEnvio FROM Envio_Mensaje'
+        );
+
+        const lastIdEnvio = lastEnvio[0].lastEnvio;
+
+        const [result] = await connection.execute(
+            'UPDATE hora SET Asistencia = ? WHERE Rut_Paciente = ? AND ID_Envio = ?',
+            [estado, rut, lastIdEnvio]
+        );
+
         if (result && result.affectedRows > 0) {
+            console.log("||||||||||");
             console.log(`Estado del paciente con RUT ${rut} actualizado a ${estado}`);
+           
             pacientesSinResponder--; // Decrementar la cantidad de pacientes sin responder
         } else {
             console.log(`No se pudo actualizar el estado del paciente con RUT ${rut}`);
         }
-
-    
     } catch (error) {
         console.log('Error al actualizar el estado del paciente en la base de datos:', error);
     }
 }
 
+
 async function programador_tareas(cliente) {
     connection = await conectarBaseDatos();
 
-    const tiempo = '0 16 14 * * *';
+    const tiempo = '0 50 11 * * *';
 
     if (cron.validate(tiempo)) {
         console.log('Cron inicializado');
