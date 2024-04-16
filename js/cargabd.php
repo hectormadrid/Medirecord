@@ -96,9 +96,9 @@ if (isset($_POST["data"])) {
         }
     }
 
-   /*$command = 'npm run dev';
+     $command = 'npm run dev';
     
-   $output = shell_exec($command);*/
+   $output = shell_exec($command);
     
     // Inicializa una cadena para almacenar la lista de pacientes actualizados
     $pacientesActualizadosStr = "";

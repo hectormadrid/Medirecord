@@ -1,6 +1,0 @@
-2024/04/15-14:59:16.114 b58 Reusing MANIFEST C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\Local Storage\leveldb/MANIFEST-000001
-2024/04/15-14:59:16.114 b58 Recovering log #12
-2024/04/15-14:59:16.115 b58 Reusing old log C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\Local Storage\leveldb/000012.log 
-2024/04/15-15:04:28.867 4990 Level-0 table #16: started
-2024/04/15-15:04:28.873 4990 Level-0 table #16: 15374 bytes OK
-2024/04/15-15:04:28.874 4990 Delete type=0 #12

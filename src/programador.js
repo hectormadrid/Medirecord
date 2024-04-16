@@ -83,7 +83,7 @@ async function actualizarEstadoPaciente(rut, respuesta) {
 
         if (result && result.affectedRows > 0) {
             console.log("||||||||||");
-            console.log(`La Asistencia del paciente con el RUT ${rut} se  ACtualizo a ${estado}`);
+            console.log(`La Asistencia del paciente con el RUT ${rut} se  Actualizo a ${estado}`);
            
             pacientesSinResponder--; // Decrementar la cantidad de pacientes sin responder
         } else {
@@ -98,7 +98,7 @@ async function actualizarEstadoPaciente(rut, respuesta) {
 async function programador_tareas(cliente) {
     connection = await conectarBaseDatos();
 // programar tarea para inicar el recordatorio 
-    const tiempo = '0 33 15 * * *';
+    const tiempo = '0 55 19 * * *';
 
     if (cron.validate(tiempo)) {
         console.log('Cron inicializado');
@@ -124,7 +124,7 @@ async function programador_tareas(cliente) {
             }
         });
            // Programar tarea cron para finalizar la aplicación 
-           cron.schedule('0 36 15 * * *', () => {
+           cron.schedule('0 05 20 * * *', () => {
             finalizarAplicacion(cliente);
         });
     }

@@ -14,16 +14,16 @@
   <!--Css-->
   <link rel="stylesheet" href="css/Estilos.css">
   <script src="https://cdn.tailwindcss.com"></script>
-
+  
 
 </head>
 
 <body>
   <div class="container pt-5">
     <div class="row">
-      <div id="banner">
-        <h1>¡Bienvenido al Sistema de Recordatorio de Citas Médicas!</h1>
-      </div>
+      
+        <h1 class="text-3xl text-center font-sans underline">Bienvenido al Sistema de Recordatorio de Citas Médicas!</h1>
+      
       <div class="cargaExel">
         <input type="file" id="excelFile" accept=".xls, .xlsx"><br>
         <button onclick="cargarExcel()">Cargar Excel</button>

@@ -1,10 +1,152 @@
-[0415/153034.396:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Feature xr-spatial-tracking's parameters are ignored.", source:  (0)
-[0415/153034.396:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'attribution-reporting'.", source:  (0)
-[0415/153034.396:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'window-management'.", source:  (0)
-[0415/153035.078:INFO:CONSOLE(0)] "The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.", source:  (0)
-[0415/153035.758:INFO:CONSOLE(136)] "Event handler of 'x-storagemutated-1' event must be added on the initial evaluation of worker script.", source: https://static.whatsapp.net/rsrc.php/v3/yZ/r/Ump8_sRl_qd.js?_nc_x=Ij3Wp8lg5Kz (136)
-[0415/153039.803:INFO:CONSOLE(70)] "ErrorUtils caught an error:
+[0415/193955.459:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Feature xr-spatial-tracking's parameters are ignored.", source:  (0)
+[0415/193955.459:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'attribution-reporting'.", source:  (0)
+[0415/193955.459:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'window-management'.", source:  (0)
+[0415/193956.941:INFO:CONSOLE(136)] "Event handler of 'x-storagemutated-1' event must be added on the initial evaluation of worker script.", source: https://static.whatsapp.net/rsrc.php/v3/yZ/r/Ump8_sRl_qd.js?_nc_x=Ij3Wp8lg5Kz (136)
+[0415/194010.498:INFO:CONSOLE(70)] "ErrorUtils caught an error:
 
 bx(...): Unknown file path "9550"
 
-Subsequent non-fatal errors won't be logged; see https://fburl.com/debugjs.", source: https://static.whatsapp.net/rsrc.php/v3/yh/r/nzRrvRgzNjX.js?_nc_x=Ij3Wp8lg5Kz (70)
+Subsequent non-fatal errors won't be logged; see https://fburl.com/debugjs.", source: https://static.whatsapp.net/rsrc.php/v3/y1/r/b2LUua_Wbtc.js?_nc_x=Ij3Wp8lg5Kz (70)
+[0415/194138.677:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/194138.677:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/194138.677:ERROR:gpu_disk_cache.cc(673)] Gpu Cache Creation failed: -2
+[0415/194138.679:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/194138.679:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/194138.679:ERROR:gpu_disk_cache.cc(673)] Gpu Cache Creation failed: -2
+[0415/194140.700:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/194140.700:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/194140.897:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/194140.897:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/194140.897:ERROR:gpu_disk_cache.cc(673)] Gpu Cache Creation failed: -2
+[0415/194140.897:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/194140.897:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/194140.897:ERROR:gpu_disk_cache.cc(673)] Gpu Cache Creation failed: -2
+[0415/194140.965:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Feature xr-spatial-tracking's parameters are ignored.", source:  (0)
+[0415/194140.965:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'attribution-reporting'.", source:  (0)
+[0415/194140.965:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'window-management'.", source:  (0)
+[0415/194141.702:ERROR:service_worker_storage.cc(1933)] Failed to delete the database: Database IO error
+[0415/194147.093:ERROR:quota_database.cc(929)] Could not open the quota database, resetting.
+[0415/194151.958:ERROR:quota_database.cc(929)] Could not open the quota database, resetting.
+[0415/194154.884:ERROR:quota_database.cc(931)] Failed to reset the quota database.
+[0415/194154.884:ERROR:quota_database.cc(931)] Failed to reset the quota database.
+[0415/194508.951:INFO:CONSOLE(2939)] "Failed to parse video contentType: video/mp4; codecs=avc1.42000a", source: https://static.whatsapp.net/rsrc.php/v3iQSd4/yW/l/makehaste_jhash/QrkY8i1po-J.js?_nc_x=Ij3Wp8lg5Kz (2939)
+[0415/194508.951:INFO:CONSOLE(2939)] "Failed to parse video contentType: video/mp4; codecs=hev1.1.6.L93.B0", source: https://static.whatsapp.net/rsrc.php/v3iQSd4/yW/l/makehaste_jhash/QrkY8i1po-J.js?_nc_x=Ij3Wp8lg5Kz (2939)
+[0415/194602.387:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/194602.387:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/194602.387:ERROR:gpu_disk_cache.cc(673)] Gpu Cache Creation failed: -2
+[0415/194602.388:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/194602.389:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/194602.389:ERROR:gpu_disk_cache.cc(673)] Gpu Cache Creation failed: -2
+[0415/194604.416:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/194604.416:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/194604.666:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/194604.667:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/194604.667:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/194604.667:ERROR:gpu_disk_cache.cc(673)] Gpu Cache Creation failed: -2
+[0415/194604.667:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/194604.667:ERROR:gpu_disk_cache.cc(673)] Gpu Cache Creation failed: -2
+[0415/194604.728:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Feature xr-spatial-tracking's parameters are ignored.", source:  (0)
+[0415/194604.728:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'attribution-reporting'.", source:  (0)
+[0415/194604.728:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'window-management'.", source:  (0)
+[0415/194605.415:ERROR:service_worker_storage.cc(1933)] Failed to delete the database: Database IO error
+[0415/194610.778:ERROR:quota_database.cc(929)] Could not open the quota database, resetting.
+[0415/194615.639:ERROR:quota_database.cc(929)] Could not open the quota database, resetting.
+[0415/194618.558:ERROR:quota_database.cc(931)] Failed to reset the quota database.
+[0415/194618.558:ERROR:quota_database.cc(931)] Failed to reset the quota database.
+[0415/194808.943:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/194808.944:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/194808.944:ERROR:gpu_disk_cache.cc(673)] Gpu Cache Creation failed: -2
+[0415/194808.946:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/194808.946:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/194808.946:ERROR:gpu_disk_cache.cc(673)] Gpu Cache Creation failed: -2
+[0415/194810.957:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/194810.957:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/194811.151:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/194811.151:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/194811.151:ERROR:gpu_disk_cache.cc(673)] Gpu Cache Creation failed: -2
+[0415/194811.151:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/194811.151:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/194811.151:ERROR:gpu_disk_cache.cc(673)] Gpu Cache Creation failed: -2
+[0415/194811.209:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Feature xr-spatial-tracking's parameters are ignored.", source:  (0)
+[0415/194811.209:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'attribution-reporting'.", source:  (0)
+[0415/194811.209:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'window-management'.", source:  (0)
+[0415/194811.957:ERROR:service_worker_storage.cc(1933)] Failed to delete the database: Database IO error
+[0415/194817.388:ERROR:quota_database.cc(929)] Could not open the quota database, resetting.
+[0415/194822.297:ERROR:quota_database.cc(929)] Could not open the quota database, resetting.
+[0415/194825.244:ERROR:quota_database.cc(931)] Failed to reset the quota database.
+[0415/194825.244:ERROR:quota_database.cc(931)] Failed to reset the quota database.
+[0415/194922.537:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/194922.537:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/194922.537:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/194922.539:ERROR:gpu_disk_cache.cc(673)] Gpu Cache Creation failed: -2
+[0415/194922.539:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/194922.539:ERROR:gpu_disk_cache.cc(673)] Gpu Cache Creation failed: -2
+[0415/194924.559:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/194924.559:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/194924.752:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/194924.752:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/194924.752:ERROR:gpu_disk_cache.cc(673)] Gpu Cache Creation failed: -2
+[0415/194924.752:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/194924.752:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/194924.752:ERROR:gpu_disk_cache.cc(673)] Gpu Cache Creation failed: -2
+[0415/194924.823:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Feature xr-spatial-tracking's parameters are ignored.", source:  (0)
+[0415/194924.823:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'attribution-reporting'.", source:  (0)
+[0415/194924.823:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'window-management'.", source:  (0)
+[0415/194925.559:ERROR:service_worker_storage.cc(1933)] Failed to delete the database: Database IO error
+[0415/194931.034:ERROR:quota_database.cc(929)] Could not open the quota database, resetting.
+[0415/194935.947:ERROR:quota_database.cc(929)] Could not open the quota database, resetting.
+[0415/194938.880:ERROR:quota_database.cc(931)] Failed to reset the quota database.
+[0415/194938.880:ERROR:quota_database.cc(931)] Failed to reset the quota database.
+[0415/195110.019:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Feature xr-spatial-tracking's parameters are ignored.", source:  (0)
+[0415/195110.019:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'attribution-reporting'.", source:  (0)
+[0415/195110.019:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'window-management'.", source:  (0)
+[0415/195111.849:INFO:CONSOLE(136)] "Event handler of 'x-storagemutated-1' event must be added on the initial evaluation of worker script.", source: https://static.whatsapp.net/rsrc.php/v3/yZ/r/Ump8_sRl_qd.js?_nc_x=Ij3Wp8lg5Kz (136)
+[0415/195116.298:INFO:CONSOLE(70)] "ErrorUtils caught an error:
+
+bx(...): Unknown file path "9550"
+
+Subsequent non-fatal errors won't be logged; see https://fburl.com/debugjs.", source: https://static.whatsapp.net/rsrc.php/v3/y1/r/b2LUua_Wbtc.js?_nc_x=Ij3Wp8lg5Kz (70)
+[0415/195157.547:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/195157.547:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/195157.548:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/195157.548:ERROR:gpu_disk_cache.cc(673)] Gpu Cache Creation failed: -2
+[0415/195157.548:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/195157.548:ERROR:gpu_disk_cache.cc(673)] Gpu Cache Creation failed: -2
+[0415/195159.567:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/195159.567:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/195159.763:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/195159.763:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/195159.763:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/195159.763:ERROR:gpu_disk_cache.cc(673)] Gpu Cache Creation failed: -2
+[0415/195159.763:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/195159.763:ERROR:gpu_disk_cache.cc(673)] Gpu Cache Creation failed: -2
+[0415/195159.836:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Feature xr-spatial-tracking's parameters are ignored.", source:  (0)
+[0415/195159.836:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'attribution-reporting'.", source:  (0)
+[0415/195159.836:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'window-management'.", source:  (0)
+[0415/195200.565:ERROR:service_worker_storage.cc(1933)] Failed to delete the database: Database IO error
+[0415/195206.115:ERROR:quota_database.cc(929)] Could not open the quota database, resetting.
+[0415/195211.006:ERROR:quota_database.cc(929)] Could not open the quota database, resetting.
+[0415/195213.945:ERROR:quota_database.cc(931)] Failed to reset the quota database.
+[0415/195213.945:ERROR:quota_database.cc(931)] Failed to reset the quota database.
+[0415/195334.099:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/195334.099:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/195334.099:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/195334.099:ERROR:gpu_disk_cache.cc(673)] Gpu Cache Creation failed: -2
+[0415/195334.099:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/195334.099:ERROR:gpu_disk_cache.cc(673)] Gpu Cache Creation failed: -2
+[0415/195336.146:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/195336.146:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/195336.362:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/195336.364:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/195336.364:ERROR:gpu_disk_cache.cc(673)] Gpu Cache Creation failed: -2
+[0415/195336.366:ERROR:cache_util_win.cc(20)] Unable to move the cache: Acceso denegado. (0x5)
+[0415/195336.367:ERROR:disk_cache.cc(205)] Unable to create cache
+[0415/195336.367:ERROR:gpu_disk_cache.cc(673)] Gpu Cache Creation failed: -2
+[0415/195336.481:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Feature xr-spatial-tracking's parameters are ignored.", source:  (0)
+[0415/195336.481:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'attribution-reporting'.", source:  (0)
+[0415/195336.481:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'window-management'.", source:  (0)
+[0415/195337.120:ERROR:service_worker_storage.cc(1933)] Failed to delete the database: Database IO error
+[0415/195342.661:ERROR:quota_database.cc(929)] Could not open the quota database, resetting.
+[0415/195347.725:ERROR:quota_database.cc(929)] Could not open the quota database, resetting.
+[0415/195350.691:ERROR:quota_database.cc(931)] Failed to reset the quota database.
+[0415/195350.691:ERROR:quota_database.cc(931)] Failed to reset the quota database.
