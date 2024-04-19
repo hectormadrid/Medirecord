@@ -22,6 +22,7 @@ const dataOpcion = {
       last: "Último",
       next: "Siguiente",
       previous: "Anterior",
+      
     },
   },
 };
@@ -32,6 +33,10 @@ const initDatatable = async () => {
   }
 
   datatable = $("#tabla_pacientes").DataTable(dataOpcion);
+  setTimeout(function() {
+    $("#tabla_pacientes_filter input[type='search']").addClass("mt-1 px-2 py-1 w-full border rounded-md");
+    $(".dataTables_paginate a").addClass("px-3 py-1 mr-2 bg-blue-500 text-white rounded hover:bg-blue-600");
+  }, 100);
   datatableInitialized = true;
 };
 

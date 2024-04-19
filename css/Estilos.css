@@ -10,12 +10,12 @@
 .botonenviar{
     position: absolute; /* Establece la posición absoluta */
       top: 107px; /* Cambia la posición vertical en píxeles */
-      left: 1123px; /* Cambia la posición horizontal en píxeles */
+      left: 1150px; /* Cambia la posición horizontal en píxeles */
 
 }
 body{
 
-    background-color:   #62abd8d8;
+    background-color:   #35454ed8;
 }
 
 tr.even {
