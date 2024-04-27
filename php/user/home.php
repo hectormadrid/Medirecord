@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['correo'])) {
+  header("Location: home.php");
+  exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -11,7 +18,7 @@
 
   <!-- DataTables CSS -->
   <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
-  
+
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -46,6 +53,11 @@
       Bienvenido al Sistema de Recordatorio de Citas Médicas
     </h1>
 
+
+    <div class="container mx-auto max-w-lg mt-20 text-center">
+      <h2 class="text-3xl font-semibold text-gray-800 mb-8">¡Bienvenido, <?php echo $_SESSION['correo']; ?>!</h2>
+      <a href="../Inicio_sesion.php" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Cerrar sesión</a>
+    </div>
 
     <div class="cargaExel bg-blue-100 border-b-4 border-gray-500 rounded-lg p-4 md:p-6 shadow-md relative ">
       <label for="excelFile" class="block text-lg font-semibold mb-2">Cargar archivo Excel:</label>
@@ -87,7 +99,7 @@
           <!-- Aquí irán tus datos -->
         </tbody>
       </table>
-      
+
     </div>
 
   </div>
@@ -109,11 +121,11 @@
     </div>
   </div>
 
-  <script src="js/cargar.js"></script>
+  <script src="../../js/cargar.js"></script>
 
 
   <?php
-  include('./js/cargabd.php');
+  include('../cargabd.php');
   ?>
 
 </body>

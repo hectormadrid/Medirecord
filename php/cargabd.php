@@ -1,11 +1,9 @@
 <?php
+require_once 'Conexion.php';
 if (isset($_POST["data"])) {
     $data = json_decode($_POST["data"], true);
 
     if (!empty($data)) {
-        // Conexión a la base de datos (debes configurarla según tu entorno)
-        $conexion = new mysqli("localhost", "root", "", "Medirecord");
-
         $ID_Usuario = 1234;
         date_default_timezone_set('America/Santiago');
         $nuevaFechaHora = new DateTime();
@@ -25,7 +23,7 @@ if (isset($_POST["data"])) {
         }
 
         // Insertar un nuevo registro en la tabla Envio_Mensaje
-        $sqlEnvio = "INSERT INTO Envio_Mensaje (ID, ID_Usuario, Hora_carga, Fecha_envio) VALUES ('$ID', '$ID_Usuario', NOW(), '$fechaHoraActual')";
+        $sqlEnvio = "INSERT INTO Envio_Mensaje (ID, ID_Usuario,correo,Pass, Hora_carga, Fecha_envio) VALUES ('$ID', '$ID_Usuario','','', NOW(), '$fechaHoraActual')";
 
         if ($conexion->query($sqlEnvio) !== TRUE) {
             echo "Error al insertar datos en la tabla 'Envio_Mensaje': " . $conexion->error;
