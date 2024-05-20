@@ -4,24 +4,23 @@ require_once 'Conexion.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar si los campos están vacíos
-    if (empty($_POST["email"]) || empty($_POST["password"])) {
+    if (empty($_POST["name"]) || empty($_POST["password"])) {
         $error = "Por favor, completa todos los campos.";
     } else {
-        $email = $_POST["email"];
+        $name = $_POST["name"];
         $password = $_POST["password"];
-        
-        $sql = "SELECT * FROM Envio_Mensaje where correo = '$email'AND pass ='$password'" ;
+
+        $sql = "SELECT * FROM Funcionario where nombre = '$name'AND pass ='$password'";
         $resultado = $conexion->query($sql);
         // Verificar credenciales (Aquí deberías consultar una base de datos)
         if ($resultado->num_rows == 1) {
             $usuario = $resultado->fetch_assoc();
-            $_SESSION['correo'] = $usuario['correo'];
+            $_SESSION['nombre'] = $usuario['nombre'];
             $_SESSION['pass'] = $usuario['pass'];
             header("Location: user/home.php");
-
             exit();
         } else {
-            $error = "Correo o contraseña incorrectos";
+            $error = "nombre o contraseña incorrectos";
         }
     }
 }
@@ -45,8 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <form action="Inicio_sesion.php" method="POST" class="space-y-4">
                 <div>
-                    <label for="email" class="block text-sm font-medium text-gray-600">Correo electrónico</label>
-                    <input type="email" name="email" id="email" class="mt-1 p-2 w-full border rounded-md">
+                    <label for="name" class="block text-sm font-medium text-gray-600">Correo electrónico</label>
+                    <input type="name" name="name" id="email" class="mt-1 p-2 w-full border rounded-md">
                 </div>
 
                 <div>
@@ -55,14 +54,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
                 <div>
-                    <button type="submit"
-                        class="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600">Iniciar
+                    <button type="submit" class="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600">Iniciar
                         sesión</button>
                 </div>
             </form>
 
             <?php if (isset($error)) { ?>
-            <p class="text-red-500 text-center"><?php echo $error; ?></p>
+                <p class="text-red-500 text-center"><?php echo $error; ?></p>
             <?php } ?>
 
         </div>

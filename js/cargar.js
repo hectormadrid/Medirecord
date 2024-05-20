@@ -1,6 +1,5 @@
 let datatable;
 let datatableInitialized = false;
-
 const dataOpcion = {
   columnDefs: [
     {
@@ -22,27 +21,25 @@ const dataOpcion = {
       last: "Último",
       next: "Siguiente",
       previous: "Anterior",
-      
     },
   },
 };
+
 
 const initDatatable = async () => {
   if (datatableInitialized) {
     datatable.destroy();
   }
 
-  datatable = $("#tabla_pacientes").DataTable(dataOpcion);
-  setTimeout(function() {
-    $("#tabla_pacientes_filter input[type='search']").addClass("mt-1 px-2 py-1 w-full border rounded-md");
-    $(".dataTables_paginate a").addClass("px-3 py-1 mr-2 bg-blue-500 text-white rounded hover:bg-blue-600");
-  }, 100);
+  datatable = $("#tabla_pacientes, #tabla_filas_omitidas").DataTable(dataOpcion);
+  $("#tabla_pacientes_filter input[type='search']").addClass("mt-1 px-2 py-1 w-full border rounded-md");
+  $(".dataTables_paginate a").addClass("px-3 py-1 mr-2 bg-blue-500 text-white rounded hover:bg-blue-600");
   datatableInitialized = true;
 };
 
 function cargarExcel() {
   const input = document.getElementById("excelFile");
-  const filasOmitidas = [];
+  let filasOmitidas = [];
   let primeraFila = true; // Variable de control para omitir la primera fila
 
   const file = input.files[0];
@@ -69,9 +66,9 @@ function cargarExcel() {
         if (row[columnIndex] === undefined) {
           console.error("Índice de columna fuera de rango:", columnIndex);
           return false;
-      }
-  
-      const cellValue = row[columnIndex].toString().trim();
+        }
+
+        const cellValue = row[columnIndex].toString().trim();
 
         // Realizar la validación de la longitud
         if (cellValue.length !== 8) {
@@ -94,6 +91,9 @@ function cargarExcel() {
         mostrarFilasOmitidas(filasOmitidas);
       }
     };
+ 
+
+   console.log(filasOmitidas)
 
     reader.readAsArrayBuffer(file);
   } else {
@@ -103,76 +103,95 @@ function cargarExcel() {
       text: "Seleccione un archivo de Excel valido",
     });
   }
+
 }
 
 function mostrarFilasOmitidas(filas) {
-  filas.sort((filaA, filaB) => {
-    const numeroA = filaA[1];
-    const numeroB = filaB[1];
-    return numeroA - numeroB; // Ordenar de menor a mayor
+  const segundaDatatable = $("#tabla_filas_omitidas").DataTable(dataOpcion);
+
+  // Limpiar la segunda DataTable antes de agregar nuevos datos
+  segundaDatatable.clear().draw();
+
+  // Agregar los datos estructurados a la segunda DataTable
+  segundaDatatable.rows.add(filas).draw();
+  
+  document.getElementById("generarpdf").addEventListener("click", function () {
+    const datospdf = segundaDatatable.rows().data().toArray();
+    // Enviar los datos al servidor para generar el PDF
+    enviarDatosDePacientesOmitidos(datospdf);
+
   });
-
-  const filasOmitidasList = $("#filasOmitidasList");
-  filasOmitidasList.empty();
-
-  // Crear un documento HTML imprimible
-  const printWindow = window.open("", "", "width=600,height=600");
-  printWindow.document.open();
-  printWindow.document.write("<html><head><title></title></head><body>");
-  printWindow.document.write("<h1>Pacientes con numero mal ingresado o no ingresado</h1>");
-
-  // Agregar solo la columna de las filas omitidas al documento
-  filas.forEach(function (fila, index) {
-    const cellValue = fila[1].toString().trim();
-    const cellValue1 = fila[2];
-    const cellValue2 = fila[3];
-    const cellValue3 = fila[4];
-    const cellValue4 = fila[5];
-
-    const value1 = cellValue.length === 0 ? "{sin número}" : cellValue;
-
-
-    // Cambia el índice de fila[] al índice de la columna que deseas imprimir
-    const listItem = `<li>Fila ${index + 1 } Numero: ${value1} ---Nombre: ${cellValue1} ---Rut: ${cellValue2} ---Dia: ${cellValue3} ---Hora: ${cellValue4} </li>`;
-    filasOmitidasList.append(listItem);
-    printWindow.document.write(
-      `<p> Numero: ${value1}, Nombre: ${cellValue1}, Rut: ${cellValue2}, Dia: ${cellValue3}, Hora: ${cellValue4}</p>`
-    );
-  });
-
-  printWindow.document.write("</body></html>");
-  printWindow.document.close();
-
-  // Imprimir el documento
-  printWindow.print();
-  printWindow.close();
 }
-
 window.addEventListener("load", async () => {
   await initDatatable();
 });
 
 
-function guardarDatosEnBaseDeDatos(data) {
+function enviarDatosDePacientesOmitidos(data) {
+  // Filtrar los datos para almacenar solo los campos deseados
+  const datosFiltrados = data.map(function(paciente) {
+    return [
+      paciente[0],
+      paciente[1],
+      paciente[2],
+      paciente[3],
+      paciente[4],
+      paciente[5]
+      // Agrega aquí otros campos que desees almacenar
+    ];
+  });
+
+  // Convertir los datos filtrados a JSON
+  const jsonData = JSON.stringify(datosFiltrados);
+  
+  console.log("Datos enviados a generarpdf.php:", jsonData);
+
+  // Enviar los datos al servidor utilizando AJAX
   $.ajax({
     type: "POST",
-    url: "js/cargabd.php", // Nombre de tu archivo PHP de procesamiento
+    url: "../user/pdftrucho.php",
     data: {
-      data: JSON.stringify(data),
-    }, // Envía los datos en formato JSON
-  
+      data: jsonData,
+    },
+    dataType: 'json',
     success: function (response) {
-      if (response === "success") {
+      console.log(response)
+      if (response) {
         // Los datos se guardaron con éxito en la base de datos
-        alert("Los datos se guardaron con éxito en la base de datos.");
-      
+        window.location.href = 'generarpdf.php';
+
       } else {
         // Ocurrió un error al guarda los datos
         alert(response);
       }
     },
     error: function () {
-      alert("Error de comunicación con el servidor.");
+      alert("Error de comunicación con el servidor database.");
+    },
+  });
+}
+
+
+function guardarDatosEnBaseDeDatos(data) {
+  $.ajax({
+    type: "POST",
+    url: "../php/cargabd.php", // Nombre de tu archivo PHP de procesamiento
+    data: {
+      data: JSON.stringify(data),
+    }, // Envía los datos en formato JSON
+
+    success: function (response) {
+      if (response === "success") {
+        // Los datos se guardaron con éxito en la base de datos
+        alert("Los datos se guardaron con éxito en la base de datos.");
+
+      } else {
+        // Ocurrió un error al guarda los datos
+        alert(response);
+      }
+    },
+    error: function () {
+      alert("Error de comunicación con el servidor database.");
     },
   });
 }

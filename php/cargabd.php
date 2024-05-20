@@ -10,7 +10,7 @@ if (isset($_POST["data"])) {
         $nuevaFechaHora->add(new DateInterval('PT1M'));
         $fechaHoraActual = $nuevaFechaHora->format('Y-m-d H:i:s');
 
-        $sqlID = "SELECT MAX(ID) AS MaxID FROM Envio_Mensaje";
+        $sqlID = "SELECT MAX(ID) AS MaxID FROM Funcionario";
         $resultID = $conexion->query($sqlID);
 
         if ($resultID) {
@@ -18,15 +18,15 @@ if (isset($_POST["data"])) {
             $ID = $rowID["MaxID"];
             $ID++; // Incrementar el valor para el próximo ID
         } else {
-            // En caso de que no haya registros en Envio_Mensaje, establecer un valor inicial
+            // En caso de que no haya registros en Funcionario, establecer un valor inicial
             $ID = 1;
         }
 
-        // Insertar un nuevo registro en la tabla Envio_Mensaje
-        $sqlEnvio = "INSERT INTO Envio_Mensaje (ID, ID_Usuario,correo,Pass, Hora_carga, Fecha_envio) VALUES ('$ID', '$ID_Usuario','','', NOW(), '$fechaHoraActual')";
+        // Insertar un nuevo registro en la tabla Funcionario
+        $sqlEnvio = "INSERT INTO Funcionario (ID, ID_Usuario,correo,Pass, Hora_carga, Fecha_envio) VALUES ('$ID', '$ID_Usuario','','', NOW(), '$fechaHoraActual')";
 
         if ($conexion->query($sqlEnvio) !== TRUE) {
-            echo "Error al insertar datos en la tabla 'Envio_Mensaje': " . $conexion->error;
+            echo "Error al insertar datos en la tabla 'Funcionario': " . $conexion->error;
             exit();
         }
 

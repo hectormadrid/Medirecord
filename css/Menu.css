@@ -80,7 +80,7 @@ body {
 }
 
 .sidebar .nav-links li:hover {
-    background: #a5a1a1;
+    background: #25925c;
 }
 
 .sidebar .nav-links li .iocn-link {
@@ -133,7 +133,7 @@ body {
 .sidebar .nav-links li .sub-menu {
     padding: 6px 6px 14px 80px;
     margin-top: -10px;
-    background: #a5a1a1;
+    background: #325aca;
     display: none;
 }
 
@@ -256,7 +256,7 @@ body {
 
 .home-section {
     position: relative;
-    background: #e0e0e0;
+    background: #ffffffd5;
     height: 100vh;
     left: 260px;
     width: calc(100% - 260px);

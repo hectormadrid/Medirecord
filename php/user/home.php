@@ -34,29 +34,28 @@ if (!isset($_SESSION['correo'])) {
 
   <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 
-  <!-- SweetAlert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- xlsx -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
 
   <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+
 
 </head>
 
-<body class="bg-gray-100 text-gray-900 tracking-wider leading-normal ">
+<body class="bg-gray-100 text-gray-900 tracking-wider leading-normal overflow-hidden">
 
   <div class="sidebar close">
     <div class="logo-details">
       <box-icon name='user-circle' color="#ffffff" class="mr-3 ml-2"></box-icon>
-      <span class="logo_name text-center" style='color:#ffffff'>Administrador</span>
+      <span class="logo_name text-center" style='color:#ffffff'>Usuario</span>
     </div>
     <ul class="nav-links">
       <li>
-        <a href="#">
+        <a href="home.php">
           <i class='bx bx-grid-alt'></i>
-          <span class="link_name">Panel</span>
+          <span class="link_name">Inicio</span>
         </a>
         <ul class="sub-menu blank">
           <li><a class="link_name" href="#">Inicio</a></li>
@@ -73,34 +72,19 @@ if (!isset($_SESSION['correo'])) {
           <i class='bx bxs-chevron-down arrow'></i>
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" href="#">Productos</a></li>
+          <li><a class="link_name" href="#">Reportes</a></li>
           <li><a href="#">Sub Menú 1</a></li>
           <li><a href="#">Sub Menú 2</a></li>
         </ul>
       </li>
-     
+   
       <li>
-        <div class="iocn-link">
-          <a href="#">
-            <i class='bx bxs-user-voice'></i>
-            <span class="link_name">Clientes</span>
-          </a>
-          <i class='bx bxs-chevron-down arrow'></i>
-        </div>
-        <ul class="sub-menu">
-          <li><a class="link_name" href="#">Clientes</a></li>
-          <li><a href="#">Sub Menú 1</a></li>
-          <li><a href="#">Sub Menú 2</a></li>
-          <li><a href="#">Sub Menú 3</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">
+        <a href="contactenos.php">
           <i class='bx bxs-contact'></i>
-          <span class="link_name">Contactos</span>
+          <span class="link_name">Contactenos</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Contactos</a></li>
+          <li><a class="link_name" href="contactenos.php">Contactenos</a></li>
         </ul>
       </li>
       <li>
@@ -125,8 +109,8 @@ if (!isset($_SESSION['correo'])) {
         <div class="profile-details">
 
           <div class="name-job  text-wrap overflow-hidden ">
-            <div class="profile_name  " >
-              Usuario,  <?php echo $_SESSION['correo']; ?>!</div>
+            <div class="profile_name  ">
+              Usuario, <?php echo $_SESSION['correo']; ?>!</div>
           </div>
           <i class='bx bx-log-out'></i>
         </div>
@@ -134,8 +118,8 @@ if (!isset($_SESSION['correo'])) {
     </ul>
   </div>
   <section class="home-section  overflow-y-auto ">
-    <div class="home-content">
-      <i class='bx bx-menu'></i>
+    <div class="home-content fixed">
+      <i class='bx bx-menu '></i>
       <span class="text">Menu</span>
     </div>
 
@@ -164,9 +148,6 @@ if (!isset($_SESSION['correo'])) {
         </div>
       </div>
 
-
-
-
       <div class="flex items-center justify-center font-sans font-bold text-center md:text-left break-normal text-indigo-500 px-2 py-4 md:py-8 text-xl md:text-2xl">
         <p>Lista de Pacientes</p>
       </div>
@@ -190,37 +171,56 @@ if (!isset($_SESSION['correo'])) {
             </tr>
           </thead>
           <tbody class="bg-blue-100 divide-y divide-blue-200">
-            <!-- Aquí irán tus datos -->
+
           </tbody>
         </table>
 
       </div>
 
+      <div class="flex items-center justify-center font-sans font-bold text-center md:text-left break-normal text-indigo-500 px-2 py-4 md:py-8 text-xl md:text-2xl">
+      <p>Lista de Pacientes con numero mal ingresado o no ingresado </p>
+    </div>
+    <button onclick="generarPDF()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold" id="generarpdf">Generar PDF</button>
+
+
+    <div class="overflow-x-auto">
+      <table id="tabla_filas_omitidas" class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+        <thead class="bg-blue-500 text-white">
+          <tr>
+            <th scope="col" class="px-6 py-3 text-left font-bold">Codigo</th>
+            <th scope="col" class="px-6 py-3 text-left font-bold">Número</th>
+            <th scope="col" class="px-6 py-3 text-left font-bold">Nombre</th>
+            <th scope="col" class="px-6 py-3 text-left font-bold">Rut</th>
+            <th scope="col" class="px-6 py-3 text-left font-bold">Día</th>
+            <th scope="col" class="px-6 py-3 text-left font-bold">Hora</th>
+           
+
+          </tr>
+        </thead>
+        <tbody class="bg-blue-100 divide-y divide-blue-200">
+          <!-- Aquí se agregarán las filas omitidas de datos dinámicamente -->
+        </tbody>
+      </table>
+    </div>
+
+        
     </div>
 
 
-    <div class="modal fade" id="filasOmitidasModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Filas Omitidas</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <ul id="filasOmitidasList"></ul>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          </div>
-        </div>
-      </div>
-    </div>
+
   </section>
   <script src="../../js/cargar.js"></script>
   <script src="../../js/Menu_desplegable.js"></script>
+  <script>
+    function generarPDF() {
+        // Redireccionar a tu archivo PHP que genera el PDF
+   //     window.location.href = 'generarpdf.php';
+    }
+</script>
 
   <?php
   include('../cargabd.php');
+  
   ?>
 
 </body>
