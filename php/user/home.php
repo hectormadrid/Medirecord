@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['correo'])) {
+if (!isset($_SESSION['nombre'])) {
   header("Location: home.php");
   exit();
 }
@@ -110,7 +110,7 @@ if (!isset($_SESSION['correo'])) {
 
           <div class="name-job  text-wrap overflow-hidden ">
             <div class="profile_name  ">
-              Usuario, <?php echo $_SESSION['correo']; ?>!</div>
+              Usuario, <?php echo $_SESSION['nombre']; ?>!</div>
           </div>
           <i class='bx bx-log-out'></i>
         </div>
@@ -131,7 +131,7 @@ if (!isset($_SESSION['correo'])) {
 
 
       <div class="container mx-auto max-w-lg mt-20 text-center">
-        <h2 class="text-3xl font-semibold text-gray-800 mb-8">¡Bienvenido, <?php echo $_SESSION['correo']; ?>!</h2>
+        <h2 class="text-3xl font-semibold text-gray-800 mb-8">¡Bienvenido, <?php echo $_SESSION['nombre']; ?>!</h2>
         <a href="../Inicio_sesion.php" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-4 ">Cerrar sesión</a>
       </div>
 

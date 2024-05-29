@@ -23,7 +23,7 @@ if (isset($_POST["data"])) {
         }
 
         // Insertar un nuevo registro en la tabla Funcionario
-        $sqlEnvio = "INSERT INTO Funcionario (ID, ID_Usuario,correo,Pass, Hora_carga, Fecha_envio) VALUES ('$ID', '$ID_Usuario','','', NOW(), '$fechaHoraActual')";
+        $sqlEnvio = "INSERT INTO Historial_Mensajes (ID, ID_funcionario,Hora_carga,Fecha_envio) VALUES ('$ID', '$ID_Usuario', NOW(), '$fechaHoraActual')";
 
         if ($conexion->query($sqlEnvio) !== TRUE) {
             echo "Error al insertar datos en la tabla 'Funcionario': " . $conexion->error;
@@ -94,10 +94,10 @@ if (isset($_POST["data"])) {
         }
     }
 
-     $command = 'npm run dev';
-    
-   $output = shell_exec($command);
-    
+    $command = 'npm run dev';
+
+    $output = shell_exec($command);
+
     // Inicializa una cadena para almacenar la lista de pacientes actualizados
     $pacientesActualizadosStr = "";
 
@@ -115,7 +115,4 @@ if (isset($_POST["data"])) {
     echo $pacientesActualizadosStr;
 
     $conexion->close();
-} 
-
-
-?>
+}

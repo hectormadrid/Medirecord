@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['correo'])) {
+if (!isset($_SESSION['nombre'])) {
     header("Location: home.php");
     exit();
 }
@@ -110,7 +110,7 @@ if (!isset($_SESSION['correo'])) {
 
                     <div class="name-job  text-wrap overflow-hidden ">
                         <div class="profile_name  ">
-                            Usuario, <?php echo $_SESSION['correo']; ?>!</div>
+                            Usuario, <?php echo $_SESSION['nombre']; ?>!</div>
                     </div>
                     <i class='bx bx-log-out'></i>
                 </div>

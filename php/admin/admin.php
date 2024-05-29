@@ -1,32 +1,249 @@
+<?php
+session_start();
+if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
+  header("Location: ../Inicio_sesion.php");
+  exit();
+}
+?>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/boxicons@2.1.3/dist/boxicons.js"></script>
-    <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <title>MediRecord</title>
-</head>
-<body>
+<html lang="es">
 
-<nav class="nav">
-    <ul class="list">
-      <li class="list_item">
-        <div class="list_botton">
-          <box-icon name='clinic' class="imagen lista"></box-icon>
-          <a href="#" class="link inicio">Inicio </a>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MediRecord</title>
+
+  <!-- Tailwind CSS -->
+  <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  <!-- DataTables CSS -->
+  <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
+
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+  <!-- Tu CSS personalizado -->
+  <link rel="stylesheet" href="../../css/Menu.css">
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://unpkg.com/boxicons@2.1.3/dist/boxicons.js"></script>
+  <!-- DataTables JS -->
+  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+  <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- xlsx -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+
+  <!-- Bootstrap JS -->
+
+
+</head>
+
+<body class="bg-gray-100 text-gray-900 tracking-wider leading-normal overflow-hidden">
+
+  <div class="sidebar close">
+    <div class="logo-details">
+      <box-icon name='user-circle' color="#ffffff" class="mr-3 ml-2"></box-icon>
+      <span class="logo_name text-center" style='color:#ffffff'>Administrador</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="home.php">
+          <i class='bx bx-grid-alt'></i>
+          <span class="link_name">Inicio</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="home.php">Inicio</a></li>
+        </ul>
+      </li>
+      <li>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="Mensajes.php">
+            <i class='bx bx-book-alt'></i>
+            <span class="link_name">Mensajes</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow'></i>
         </div>
       </li>
-      
-      <li class="list_item"></li>
-      <div class="list_botton--click ">
-      <box-icon type='solid' name='book'></box-icon>
-      <a href="#" class="link reportes">Reportes</a>
-      <box-icon name='chevron-right' ></box-icon>
-      </div>
+
+      <li>
+        <a href="#">
+          <i class='bx bxs-contact'></i>
+          <span class="link_name">Contactenos</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Contactenos</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bxs-edit-location'></i>
+          <span class="link_name">Sedes</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Sedes</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-cog'></i>
+          <span class="link_name">Configuración</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Configuración</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="profile-details">
+
+          <div class="name-job  text-wrap overflow-hidden ">
+            <div class="profile_name  ">
+              Usuario, <?php echo $_SESSION['nombre']; ?>!</div>
+          </div>
+          <i class='bx bx-log-out'><a href="../Inicio_sesion.php"></a> </i>
+        </div>
+      </li>
     </ul>
-  </nav>
-  <div class="container mx-auto px-4">
-     <h1>holaaaa</h1>
+  </div>
+  <section class="home-section  overflow-y-auto ">
+    <div class="home-content fixed">
+      <i class='bx bx-menu '></i>
+      <span class="text">Menu</span>
+    </div>
+
+    <div class="container mx-auto px-4">
+      <h1 class="  text-4xl md:text-5xl text-center font-serif font-bold text-black-500 mb-6 mt-6">
+        Bienvenido Administrador
+      </h1>
+      <div class="bg-white p-8 rounded shadow-md w-full max-w-4xl mx-auto">
+        <h2 class="text-2xl mb-4 text-center font-semibold">Lista de Funcionarios</h2>
+        <table id="funcionariosTable" class="display responsive nowrap w-full">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Rut</th>
+              <th>nombre</th>
+              <th>Pass</th>
+            </tr>
+          </thead>
+          <tbody id="funcionariosTableBody">
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="bg-white p-8 rounded shadow-md w-full max-w-4xl mx-auto">
+      <h2 class="text-2xl mb-4 text-center font-semibold">Agregar Nuevo Funcionario</h2>
+      <form id="addFuncionarioForm" class="w-full max-w-lg mx-auto">
+        <div class="mb-4">
+          <label for="nombre" class="block text-gray-700 font-bold mb-2">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="mb-4">
+          <label for="rut" class="block text-gray-700 font-bold mb-2">Rut:</label>
+          <input type="text" id="rut" name="rut" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="mb-4">
+          <label for="pass" class="block text-gray-700 font-bold mb-2">Contraseña:</label>
+          <input type="password" id="pass" name="pass" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="flex items-center justify-between">
+          <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Agregar Funcionario</button>
+        </div>
+      </form>
+
+    </div>
+
+  </section>
+  <script src="../../js/Menu_desplegable.js"></script>
+  <script src="../../js/datatables.js"></script>
+  <script>
+    $(document).ready(function() {
+      $.ajax({
+        url: 'obtener_funcionarios.php',
+        dataType: 'json',
+        success: function(data) {
+          // Combinar la configuración global dataOpcion con la configuración específica
+          var opcionesDataTable = $.extend({}, dataOpcion, {
+            data: data,
+            columns: [{
+                data: 'id'
+              },
+              {
+                data: 'rut'
+              },
+              {
+                data: 'nombre'
+              },
+              {
+                data: 'pass'
+              }
+            ]
+            // Otras configuraciones de DataTables aquí...
+          });
+
+          // Inicializar la DataTable con las opciones combinadas
+          $('#funcionariosTable').DataTable(opcionesDataTable);
+        }
+      });
+    });
+  </script>
+  <script>
+    $(document).ready(function() {
+      $('#addFuncionarioForm').submit(function(event) {
+        event.preventDefault(); // Evitar que el formulario se envíe de forma tradicional
+        // Obtener los valores de los campos del formulario
+        var nombre = $('#nombre').val();
+        var rut = $('#rut').val();
+        var pass = $('#pass').val();
+
+        // Verificar si los campos están vacíos
+        if (nombre.trim() === '' || rut.trim() === '' || pass.trim() === '') {
+          // Mostrar un mensaje de error
+          Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Por favor, completa todos los campos.'
+            });
+          return; // Detener el envío del formulario
+        }
+
+        // Si los campos no están vacíos, enviar los datos al servidor
+        var formData = {
+          nombre: nombre,
+          rut: rut,
+          pass: pass
+        };
+
+
+        // Enviar los datos del formulario al servidor
+        $.ajax({
+          type: 'POST',
+          url: 'agregar_funcionarios.php', // Ruta al script PHP que procesará los datos
+          data: formData,
+          dataType: 'json',
+          success: function(response) {
+            // Mostrar un mensaje de éxito o error
+            if (response.success) {
+              // Éxito
+              alert(response.message);
+              // Aquí puedes recargar la tabla DataTable o realizar otras acciones necesarias
+            } else {
+              // Error
+              alert('Error: ' + response.message);
+            }
+          }
+        });
+      });
+    });
+  </script>
+
 </body>
+
 </html>

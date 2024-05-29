@@ -3,24 +3,28 @@ session_start();
 require_once 'Conexion.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Verificar si los campos están vacíos
     if (empty($_POST["name"]) || empty($_POST["password"])) {
         $error = "Por favor, completa todos los campos.";
     } else {
         $name = $_POST["name"];
         $password = $_POST["password"];
 
-        $sql = "SELECT * FROM Funcionario where nombre = '$name'AND pass ='$password'";
+        $sql = "SELECT * FROM Funcionario WHERE nombre = '$name' AND pass = '$password'";
         $resultado = $conexion->query($sql);
-        // Verificar credenciales (Aquí deberías consultar una base de datos)
+
         if ($resultado->num_rows == 1) {
             $usuario = $resultado->fetch_assoc();
             $_SESSION['nombre'] = $usuario['nombre'];
-            $_SESSION['pass'] = $usuario['pass'];
-            header("Location: user/home.php");
+            $_SESSION['rol'] = $usuario['rol'];
+
+            if ($usuario['rol'] == 'admin') {
+                header("Location: admin/admin.php");
+            } else {
+                header("Location: user/home.php");
+            }
             exit();
         } else {
-            $error = "nombre o contraseña incorrectos";
+            $error = "Nombre o contraseña incorrectos";
         }
     }
 }
@@ -44,8 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <form action="Inicio_sesion.php" method="POST" class="space-y-4">
                 <div>
-                    <label for="name" class="block text-sm font-medium text-gray-600">Correo electrónico</label>
-                    <input type="name" name="name" id="email" class="mt-1 p-2 w-full border rounded-md">
+                    <label for="name" class="block text-sm font-medium text-gray-600">Nombre</label>
+                    <input type="name" name="name" id="name" class="mt-1 p-2 w-full border rounded-md">
                 </div>
 
                 <div>
