@@ -3,6 +3,7 @@ let datatableInitialized = false;
 const dataOpcion = {
   columnDefs: [
     {
+      className: "text-center",
       defaultContent: "",
       targets: "_all",
     },
@@ -10,21 +11,27 @@ const dataOpcion = {
   destroy: true,
   language: {
     lengthMenu: "Mostrar _MENU_ registros por página",
-    zeroRecords: "Ningún usuario encontrado",
+    zeroRecords: "Ningún Paciente  encontrado",
     info: "Mostrando de _START_ a _END_ de un total de _TOTAL_ registros",
-    infoEmpty: "Ningún usuario encontrado",
+    infoEmpty: "Ningún Paciente encontrado",
     infoFiltered: "(filtrados desde _MAX_ registros totales)",
     search: "Buscar:",
+    searchPanes: {
+      clearMessage: 'Limpiar búsqueda'
+    },
     loadingRecords: "Cargando...",
     paginate: {
-      first: "Primero",
-      last: "Último",
-      next: "Siguiente",
-      previous: "Anterior",
+      first: "Primera",
+      last: "Última",
+      next: " Siguente", 
+      previous: "Anterior " 
     },
   },
+  paging: true,
+  lengthChange: true,
+  ordering: true,
+  info: true,
 };
-
 
 const initDatatable = async () => {
   if (datatableInitialized) {

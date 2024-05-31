@@ -182,7 +182,6 @@ if (!isset($_SESSION['nombre'])) {
     </div>
     <button onclick="generarPDF()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold" id="generarpdf">Generar PDF</button>
 
-
     <div class="overflow-x-auto">
       <table id="tabla_filas_omitidas" class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
         <thead class="bg-blue-500 text-white">
@@ -198,7 +197,6 @@ if (!isset($_SESSION['nombre'])) {
           </tr>
         </thead>
         <tbody class="bg-blue-100 divide-y divide-blue-200">
-          <!-- Aquí se agregarán las filas omitidas de datos dinámicamente -->
         </tbody>
       </table>
     </div>

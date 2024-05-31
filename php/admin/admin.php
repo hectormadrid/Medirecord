@@ -53,23 +53,18 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
     </div>
     <ul class="nav-links">
       <li>
-        <a href="home.php">
+        <a href="admin.php">
           <i class='bx bx-grid-alt'></i>
           <span class="link_name">Inicio</span>
         </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="home.php">Inicio</a></li>
-        </ul>
       </li>
-      <li>
-      </li>
+      
       <li>
         <div class="iocn-link">
           <a href="Mensajes.php">
             <i class='bx bx-book-alt'></i>
             <span class="link_name">Mensajes</span>
           </a>
-          <i class='bx bxs-chevron-down arrow'></i>
         </div>
       </li>
 
@@ -123,20 +118,25 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
         Bienvenido Administrador
       </h1>
       <div class="bg-white p-8 rounded shadow-md w-full max-w-4xl mx-auto">
-        <h2 class="text-2xl mb-4 text-center font-semibold">Lista de Funcionarios</h2>
-        <table id="funcionariosTable" class="display responsive nowrap w-full">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Rut</th>
-              <th>nombre</th>
-              <th>Pass</th>
-            </tr>
-          </thead>
-          <tbody id="funcionariosTableBody">
-          </tbody>
-        </table>
+        <h2 class="text-2xl mb-4 text-center font-semibold text-blue-700">Lista de Funcionarios</h2>
+        <div class="">
+          <table id="funcionariosTable" class="table-auto min-w-full">
+            <thead class="bg-blue-500 text-white">
+              <tr>
+                <th class="px-4 py-2">ID</th>
+                <th class="px-4 py-2">Rut</th>
+                <th class="px-4 py-2">Nombre</th>
+                <th class="px-4 py-2">Contraseña</th>
+
+              </tr>
+            </thead>
+            <tbody id="funcionariosTableBody" class="bg-blue-100 divide-y divide-blue-200">
+              
+            </tbody>
+          </table>
+        </div>
       </div>
+
     </div>
     <div class="bg-white p-8 rounded shadow-md w-full max-w-4xl mx-auto">
       <h2 class="text-2xl mb-4 text-center font-semibold">Agregar Nuevo Funcionario</h2>
@@ -163,37 +163,7 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
   </section>
   <script src="../../js/Menu_desplegable.js"></script>
   <script src="../../js/datatables.js"></script>
-  <script>
-    $(document).ready(function() {
-      $.ajax({
-        url: 'obtener_funcionarios.php',
-        dataType: 'json',
-        success: function(data) {
-          // Combinar la configuración global dataOpcion con la configuración específica
-          var opcionesDataTable = $.extend({}, dataOpcion, {
-            data: data,
-            columns: [{
-                data: 'id'
-              },
-              {
-                data: 'rut'
-              },
-              {
-                data: 'nombre'
-              },
-              {
-                data: 'pass'
-              }
-            ]
-            // Otras configuraciones de DataTables aquí...
-          });
-
-          // Inicializar la DataTable con las opciones combinadas
-          $('#funcionariosTable').DataTable(opcionesDataTable);
-        }
-      });
-    });
-  </script>
+  <script src="../../js/tablaadmin.js"></script>
   <script>
     $(document).ready(function() {
       $('#addFuncionarioForm').submit(function(event) {
@@ -207,10 +177,10 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
         if (nombre.trim() === '' || rut.trim() === '' || pass.trim() === '') {
           // Mostrar un mensaje de error
           Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Por favor, completa todos los campos.'
-            });
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Por favor, completa todos los campos.'
+          });
           return; // Detener el envío del formulario
         }
 
