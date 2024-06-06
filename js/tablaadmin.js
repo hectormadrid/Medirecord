@@ -1,4 +1,4 @@
-// main.js
+
 $(document).ready(function () {
     $.ajax({
         url: 'obtener_funcionarios.php',

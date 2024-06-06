@@ -4,7 +4,41 @@ if (!isset($_SESSION['nombre'])) {
     header("Location: home.php");
     exit();
 }
+
+
+require_once '../Conexion.php';
+
+
+
+$nombre = $_SESSION['nombre'];
+$rut = "";
+
+// Verificar la conexión a la base de datos
+if ($conexion->connect_error) {
+    die("Error de conexión: " . $conexion->connect_error);
+}
+
+// Preparar la consulta SQL
+$sql = "SELECT Rut FROM Funcionario WHERE ID = ?";
+$stmt = $conexion->prepare($sql);
+
+if ($stmt === false) {
+    die("Error en la preparación de la consulta: " . $conexion->error);
+}
+
+$stmt->bind_param("s", $nombre);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+    $rut = $user['Rut'];
+}
+
+$stmt->close();
+$conexion->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -130,26 +164,28 @@ if (!isset($_SESSION['nombre'])) {
             </h1>
 
             <div class="container mx-auto px-4 py-8">
-        <h1 class="text-4xl text-center font-bold mb-6">Comentarios y Sugerencias</h1>
-        <form action="procesar_comentario.php" method="POST" class="max-w-xl mx-auto bg-white p-8 shadow-md rounded">
-            <div class="mb-4">
-                <label for="nombre" class="block text-gray-700">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required class="w-full px-3 py-2 border rounded">
+                <h1 class="text-4xl text-center font-bold mb-6">Comentarios y Sugerencias</h1>
+                <form action="procesar_comentario.php" method="POST" class="max-w-xl mx-auto bg-white p-8 shadow-md rounded">
+                    <div class="mb-4">
+                        <label for="nombre" class="block text-gray-700">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" value="<?php echo htmlspecialchars($nombre); ?>" required readonly class="w-full px-3 py-2 border rounded">
+                    </div>
+                    <div class="mb-4">
+                        <label for="Rut" class="block text-gray-700">Rut:</label>
+                        <input type="text" id="Rut" name="Rut" value="<?php echo htmlspecialchars($rut); ?>" required class="w-full px-3 py-2 border rounded">
+                    </div>
+                    <div class="mb-4">
+                        <label for="mensaje" class="block text-gray-700">Mensaje:</label>
+                        <textarea id="mensaje" name="mensaje" required class="w-full px-3 py-2 border rounded" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded">Enviar</button>
+                </form>
             </div>
-            <div class="mb-4">
-                <label for="correo" class="block text-gray-700">Correo Electrónico:</label>
-                <input type="email" id="correo" name="correo" required class="w-full px-3 py-2 border rounded">
-            </div>
-            <div class="mb-4">
-                <label for="mensaje" class="block text-gray-700">Mensaje:</label>
-                <textarea id="mensaje" name="mensaje" required class="w-full px-3 py-2 border rounded" rows="4"></textarea>
-            </div>
-            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded">Enviar</button>
-        </form>
-    </div>
 
 
-</section>
-<script src="../../js/Menu_desplegable.js"></script>
+    </section>
+    <script src="../../js/Menu_desplegable.js"></script>
+
 </body>
+
 </html>

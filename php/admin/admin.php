@@ -192,7 +192,7 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
         };
 
 
-        // Enviar los datos del formulario al servidor
+      
         $.ajax({
           type: 'POST',
           url: 'agregar_funcionarios.php', // Ruta al script PHP que procesará los datos
