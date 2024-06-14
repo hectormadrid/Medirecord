@@ -62,7 +62,7 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
       <li>
         <div class="iocn-link">
           <a href="Mensajes.php">
-            <i class='bx bx-book-alt'></i>
+          <i class='bx bx-comment-dots'></i>
             <span class="link_name">Mensajes</span>
           </a>
         </div>

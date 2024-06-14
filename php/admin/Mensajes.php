@@ -1,12 +1,16 @@
 <?php
 session_start();
+require_once '../Conexion.php';
 if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
     header("Location: ../Inicio_sesion.php");
     exit();
 }
+
+$sql = "SELECT id, nombre, rut, mensaje, respuesta FROM Comentarios";
+$result = $conexion->query($sql);
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es"> 
 
 <head>
     <meta charset="UTF-8">
@@ -62,7 +66,7 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
             <li>
                 <div class="iocn-link">
                     <a href="Mensajes.php">
-                        <i class='bx bx-book-alt'></i>
+                        <i class='bx bx-comment-dots'></i>
                         <span class="link_name">Mensajes</span>
                     </a>
                 </div>
@@ -100,7 +104,7 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
 
                     <div class="name-job  text-wrap overflow-hidden ">
                         <div class="profile_name  ">
-                            Usuario, <?php echo $_SESSION['nombre']; ?>!</div>
+                          Usuario, <?php echo $_SESSION['nombre']; ?>!</div>
                     </div>
                     <i class='bx bx-log-out'><a href="../Inicio_sesion.php"></a> </i>
                 </div>

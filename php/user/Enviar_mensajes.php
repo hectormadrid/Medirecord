@@ -2,18 +2,35 @@
 session_start();
 require_once '../Conexion.php';
 
-// Preparar y enlazar
-$stmt = $conn->prepare("INSERT INTO comments (name, email, message) VALUES (?, ?, ?)");
-$stmt->bind_param("sss", $name, $email, $message);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nombre = $_POST['nombre'];
+    $rut = $_POST['Rut'];
+    $mensaje = $_POST['mensaje'];
 
-// Establecer parámetros y ejecutar
-$name = $_POST['nombre'];
-$email = $_POST['correo'];
-$message = $_POST['mensaje'];
-$stmt->execute();
+    // Verificar la conexión a la base de datos
+    if ($conexion->connect_error) {
+        die("Error de conexión: " . $conexion->connect_error);
+    }
 
-$stmt->close();
-$conn->close();
+    // Preparar la consulta SQL para insertar el comentario
+    $sql = "INSERT INTO Comentarios (nombre, rut, mensaje,fecha) VALUES (?, ?, ?,now())";
+    $stmt = $conexion->prepare($sql);
 
-echo "Comentario enviado exitosamente";
+    if ($stmt === false) {
+        die("Error en la preparación de la consulta: " . $conexion->error);
+    }
+
+    $stmt->bind_param("sss", $nombre, $rut, $mensaje);
+
+    if ($stmt->execute()) {
+        echo "Comentario enviado exitosamente.";
+        header("Location: contactenos.php");
+        exit();
+    } else {
+        echo "Error al enviar el comentario: " . $stmt->error;
+    }
+
+    $stmt->close();
+    $conexion->close();
+}
 ?>

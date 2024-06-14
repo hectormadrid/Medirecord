@@ -163,7 +163,7 @@ $conexion->close();
 
             <div class="container mx-auto px-4 py-8">
                 <h1 class="text-4xl text-center font-bold mb-6">Comentarios y Sugerencias</h1>
-                <form action="procesar_comentario.php" method="POST" class="max-w-xl mx-auto bg-white p-8 shadow-md rounded">
+                <form action="Enviar_mensajes.php" method="POST" class="max-w-xl mx-auto bg-white p-8 shadow-md rounded">
                     <div class="mb-4">
                         <label for="nombre" class="block text-gray-700">Nombre:</label>
                         <input type="text" id="nombre" name="nombre" value="<?php echo htmlspecialchars($nombre); ?>" required readonly class="w-full px-3 py-2 border rounded">

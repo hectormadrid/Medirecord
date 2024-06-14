@@ -19,4 +19,4 @@ while ($row = $resultado->fetch_assoc()) {
 // Depurar el JSON
 header('Content-Type: application/json');
 echo json_encode($funcionarios);
-?>
+
