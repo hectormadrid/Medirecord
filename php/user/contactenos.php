@@ -5,10 +5,7 @@ if (!isset($_SESSION['nombre'])) {
     exit();
 }
 
-
 require_once '../Conexion.php';
-
-
 
 $nombre = $_SESSION['nombre'];
 $rut = "";
@@ -19,7 +16,7 @@ if ($conexion->connect_error) {
 }
 
 // Preparar la consulta SQL
-$sql = "SELECT Rut FROM Funcionario WHERE ID = ?";
+$sql = "SELECT Rut FROM Funcionario WHERE Nombre = ?";
 $stmt = $conexion->prepare($sql);
 
 if ($stmt === false) {
@@ -38,6 +35,7 @@ if ($result->num_rows > 0) {
 $stmt->close();
 $conexion->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -172,7 +170,7 @@ $conexion->close();
                     </div>
                     <div class="mb-4">
                         <label for="Rut" class="block text-gray-700">Rut:</label>
-                        <input type="text" id="Rut" name="Rut" value="<?php echo htmlspecialchars($rut); ?>" required class="w-full px-3 py-2 border rounded">
+                        <input type="text" id="Rut" name="Rut" value="<?php echo ($rut); ?>"readonly required class="w-full px-3 py-2 border rounded">
                     </div>
                     <div class="mb-4">
                         <label for="mensaje" class="block text-gray-700">Mensaje:</label>

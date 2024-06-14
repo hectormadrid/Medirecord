@@ -40,8 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body class="bg-gray-100">
-
-    <div class="flex justify-center items-center h-screen">
+    <div class="flex flex-col justify-center items-center h-screen">
+        <img src="../componentes/logo.png" class="w-32 md:w-52 mx-auto mb-6 ">
         <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
 
             <h2 class="text-2xl mb-4 text-center font-semibold">Iniciar sesión</h2>
