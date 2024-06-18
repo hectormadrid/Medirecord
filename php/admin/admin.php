@@ -102,7 +102,7 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
             <div class="profile_name  ">
               Usuario, <?php echo $_SESSION['nombre']; ?>!</div>
           </div>
-          <i class='bx bx-log-out'><a href="../Inicio_sesion.php"></a> </i>
+          <a href="../Inicio_sesion.php" class='inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-4  bx bx-log-out' > </a>
         </div>
       </li>
     </ul>
