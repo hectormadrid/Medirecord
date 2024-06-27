@@ -11,6 +11,7 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../componentes/logo pestaña.ico">
   <title>MediRecord</title>
 
   <!-- Tailwind CSS -->
@@ -39,8 +40,8 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
   <!-- xlsx -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
 
-  <!-- Bootstrap JS -->
 
+  
 
 </head>
 
@@ -58,11 +59,11 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
           <span class="link_name">Inicio</span>
         </a>
       </li>
-      
+
       <li>
         <div class="iocn-link">
           <a href="Mensajes.php">
-          <i class='bx bx-comment-dots'></i>
+            <i class='bx bx-comment-dots'></i>
             <span class="link_name">Mensajes</span>
           </a>
         </div>
@@ -73,36 +74,29 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
           <i class='bx bxs-contact'></i>
           <span class="link_name">Contactenos</span>
         </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Contactenos</a></li>
-        </ul>
+
       </li>
       <li>
         <a href="#">
           <i class='bx bxs-edit-location'></i>
           <span class="link_name">Sedes</span>
         </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Sedes</a></li>
-        </ul>
+
       </li>
       <li>
         <a href="#">
           <i class='bx bx-cog'></i>
           <span class="link_name">Configuración</span>
         </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Configuración</a></li>
-        </ul>
+
       </li>
       <li>
         <div class="profile-details">
-
           <div class="name-job  text-wrap overflow-hidden ">
             <div class="profile_name  ">
               Usuario, <?php echo $_SESSION['nombre']; ?>!</div>
           </div>
-          <a href="../Inicio_sesion.php" class='inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-4  bx bx-log-out' > </a>
+          <a href="../Inicio_sesion.php" class='inline-block bg-[#3664E4] hover:bg-red-800 text-white font-bold py-2 px-4 rounded mb-4  bx bx-log-out '> </a>
         </div>
       </li>
     </ul>
@@ -131,7 +125,7 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
               </tr>
             </thead>
             <tbody id="funcionariosTableBody" class="bg-blue-100 divide-y divide-blue-200">
-              
+
             </tbody>
           </table>
         </div>
@@ -192,7 +186,7 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
         };
 
 
-      
+
         $.ajax({
           type: 'POST',
           url: 'agregar_funcionarios.php', // Ruta al script PHP que procesará los datos

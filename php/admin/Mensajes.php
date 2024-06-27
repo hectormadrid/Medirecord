@@ -19,6 +19,7 @@ if ($result === false) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../componentes/logo pestaña.ico">
     <title>MediRecord</title>
 
     <!-- Tailwind CSS -->

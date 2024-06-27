@@ -11,6 +11,7 @@ if (!isset($_SESSION['nombre'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../componentes/logo pestaña.ico">
   <title>MediRecord</title>
 
   <!-- Tailwind CSS -->
@@ -57,25 +58,17 @@ if (!isset($_SESSION['nombre'])) {
           <i class='bx bx-grid-alt'></i>
           <span class="link_name">Inicio</span>
         </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Inicio</a></li>
-        </ul>
+       
       </li>
-      <li>
-      </li>
+      
       <li>
         <div class="iocn-link">
           <a href="#">
             <i class='bx bx-book-alt'></i>
             <span class="link_name">Reportes</span>
           </a>
-          <i class='bx bxs-chevron-down arrow'></i>
+         
         </div>
-        <ul class="sub-menu">
-          <li><a class="link_name" href="#">Reportes</a></li>
-          <li><a href="#">Sub Menú 1</a></li>
-          <li><a href="#">Sub Menú 2</a></li>
-        </ul>
       </li>
    
       <li>
@@ -83,27 +76,21 @@ if (!isset($_SESSION['nombre'])) {
           <i class='bx bxs-contact'></i>
           <span class="link_name">Contactenos</span>
         </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="contactenos.php">Contactenos</a></li>
-        </ul>
+       
       </li>
       <li>
         <a href="#">
           <i class='bx bxs-edit-location'></i>
           <span class="link_name">Sedes</span>
         </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Sedes</a></li>
-        </ul>
+       
       </li>
       <li>
         <a href="#">
           <i class='bx bx-cog'></i>
           <span class="link_name">Configuración</span>
         </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Configuración</a></li>
-        </ul>
+     
       </li>
       <li>
         <div class="profile-details">
@@ -111,9 +98,9 @@ if (!isset($_SESSION['nombre'])) {
           <div class="name-job  text-wrap overflow-hidden ">
             <div class="profile_name  "> 
               
-              Usuario, <?php echo $_SESSION['nombre']; ?>!</div>
+              Usuario: <?php echo $_SESSION['nombre']; ?>!</div>
           </div>
-          <a href="../Inicio_sesion.php" class='inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-4  bx bx-log-out' > </a>
+          <a href="../Inicio_sesion.php" class='inline-block bg-[#3664E4] hover:bg-red-800 text-white font-bold py-2 px-4 rounded mb-4  bx bx-log-out '> </a>
         </div>
       </li>
     </ul>
@@ -133,11 +120,11 @@ if (!isset($_SESSION['nombre'])) {
 
       <div class="container mx-auto max-w-lg mt-20 text-center">
         <h2 class="text-3xl font-semibold text-gray-800 mb-8">¡Bienvenido, <?php echo $_SESSION['nombre']; ?>!</h2>
-        <a href="../Inicio_sesion.php" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-4 ">Cerrar sesión</a>
+        
       </div>
 
       <div class="container mx-auto px-4 relative">
-        <div class="cargaExel bg-blue-100 border-b-4 border-gray-500 rounded-lg p-4 md:p-6 shadow-md ">
+        <div class="cargaExel bg-blue-100 border-b-4 border-green-600 rounded-lg p-4 md:p-6 shadow-md ">
           <label for="excelFile" class="block text-lg font-semibold mb-2">Cargar archivo Excel:</label>
           <input class="block w-full py-2 px-3 md:px-4 mb-3 md:mb-4 rounded-md border border-gray-300" type="file" id="excelFile" accept=".xls, .xlsx">
           <button onclick="cargarExcel()" class="static block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-3 md:px-4 rounded mb-2 md:mb-0 md:mr-2">
@@ -181,7 +168,7 @@ if (!isset($_SESSION['nombre'])) {
       <div class="flex items-center justify-center font-sans font-bold text-center md:text-left break-normal text-indigo-500 px-2 py-4 md:py-8 text-xl md:text-2xl">
       <p>Lista de Pacientes con numero mal ingresado o no ingresado </p>
     </div>
-    <button onclick="generarPDF()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold" id="generarpdf">Generar PDF</button>
+    <button onclick="generarPDF()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-3 md:px-4 rounded mb-2 md:mb-0 md:mr-2" id="generarpdf">Generar PDF</button>
 
     <div class="overflow-x-auto">
       <table id="tabla_filas_omitidas" class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
