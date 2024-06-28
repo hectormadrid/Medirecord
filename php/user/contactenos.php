@@ -90,9 +90,7 @@ $conexion->close();
                     <i class='bx bx-grid-alt'></i>
                     <span class="link_name">Inicio</span>
                 </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="home.php">Inicio</a></li>
-                </ul>
+              
             </li>
             <li>
             </li>
@@ -104,39 +102,29 @@ $conexion->close();
                     </a>
                     <i class='bx bxs-chevron-down arrow'></i>
                 </div>
-                <ul class="sub-menu">
-                    <li><a class="link_name" href="#">Reportes</a></li>
-                    <li><a href="#">Sub Menú 1</a></li>
-                    <li><a href="#">Sub Menú 2</a></li>
-                </ul>
+              
             </li>
 
             <li>
                 <a href="#">
-                    <i class='bx bxs-contact'></i>
+                <i class='bx bx-box'></i>
                     <span class="link_name">Contactenos</span>
                 </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="#">Contactenos</a></li>
-                </ul>
+               
             </li>
             <li>
                 <a href="#">
                     <i class='bx bxs-edit-location'></i>
                     <span class="link_name">Sedes</span>
                 </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="#">Sedes</a></li>
-                </ul>
+             
             </li>
             <li>
                 <a href="#">
                     <i class='bx bx-cog'></i>
                     <span class="link_name">Configuración</span>
                 </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="#">Configuración</a></li>
-                </ul>
+             
             </li>
             <li>
                 <div class="profile-details">
@@ -145,7 +133,7 @@ $conexion->close();
                         <div class="profile_name  ">
                             Usuario, <?php echo $_SESSION['nombre']; ?>!</div>
                     </div>
-                    <i class='bx bx-log-out'></i>
+                    <a href="../Inicio_sesion.php" class='inline-block bg-[#3664E4] hover:bg-red-800 text-white font-bold py-2 px-4 rounded mb-4  bx bx-log-out '> </a>
                 </div>
             </li>
         </ul>
@@ -164,14 +152,14 @@ $conexion->close();
 
             <div class="container mx-auto px-4 py-8">
                 <h1 class="text-4xl text-center font-bold mb-6">Comentarios y Sugerencias</h1>
-                <form action="Enviar_mensajes.php" method="POST" class="max-w-xl mx-auto bg-white p-8 shadow-md rounded">
+                <form id="addContactenosForm" method="POST" class="max-w-xl mx-auto bg-white p-8 shadow-md rounded">
                     <div class="mb-4">
                         <label for="nombre" class="block text-gray-700">Nombre:</label>
                         <input type="text" id="nombre" name="nombre" value="<?php echo htmlspecialchars($nombre); ?>" required readonly class="w-full px-3 py-2 border rounded">
                     </div>
                     <div class="mb-4">
                         <label for="Rut" class="block text-gray-700">Rut:</label>
-                        <input type="text" id="Rut" name="Rut" value="<?php echo ($rut); ?>"readonly required class="w-full px-3 py-2 border rounded">
+                        <input type="text" id="Rut" name="Rut" value="<?php echo ($rut); ?>" readonly required class="w-full px-3 py-2 border rounded">
                     </div>
                     <div class="mb-4">
                         <label for="mensaje" class="block text-gray-700">Mensaje:</label>
@@ -180,10 +168,71 @@ $conexion->close();
                     <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded">Enviar</button>
                 </form>
             </div>
-
-
     </section>
     <script src="../../js/Menu_desplegable.js"></script>
+    <script>
+$(document).ready(function() {
+    $('#addContactenosForm').submit(function(event) {
+        event.preventDefault(); // Evitar que el formulario se envíe de forma tradicional
+        // Obtener los valores de los campos del formulario
+        var mensaje = $('#mensaje').val();
+        
+        // Verificar si el campo está vacío
+        if (mensaje.trim() === '') {
+            // Mostrar un mensaje de error
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Por favor, completa todos los campos.'
+            });
+            return; // Detener el envío del formulario
+        }
+
+        // Si el campo no está vacío, enviar los datos al servidor
+        var formData = {
+            mensaje: mensaje
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: 'Enviar_mensajes.php', // Ruta al script PHP que procesará los datos
+            data: formData,
+            dataType: 'json',
+            success: function(response) {
+                console.log(response); // Verificar la respuesta real del servidor
+                // Mostrar un mensaje de éxito o error
+                if (response.success) {
+                    // Éxito
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Éxito',
+                        text: response.message
+                    }).then(() => {
+                        // Recargar la página
+                        window.location.reload();
+                    });
+                } else {
+                    // Error
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: response.message
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error en la solicitud AJAX:', error);
+                console.log(xhr.responseText); // Ver respuesta completa del servidor para depuración
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Hubo un problema con la solicitud. Inténtalo nuevamente.'
+                });
+            }
+        });
+    });
+});
+</script>
 
 </body>
 

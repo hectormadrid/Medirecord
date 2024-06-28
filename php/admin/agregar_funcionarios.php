@@ -8,20 +8,25 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
     exit();
 }
 
+// Establecer el encabezado Content-Type para la respuesta JSON
+header('Content-Type: application/json');
+
 $nombre = $_POST['nombre'];
 $rut = $_POST['rut'];
 $pass = $_POST['pass'];
 
-// Crear la consulta SQL para agregar el funcionario a la base de datos
-$sql = "INSERT INTO Funcionario (nombre, rut, pass) VALUES ('$nombre', '$rut', '$pass')";
+// Preparar la consulta SQL para agregar el funcionario a la base de datos
+$stmt = $conexion->prepare("INSERT INTO Funcionario (nombre, rut, pass) VALUES (?, ?, ?)");
+$stmt->bind_param("sss", $nombre, $rut, $pass);
 
 // Ejecutar la consulta
-if (mysqli_query($conexion, $sql)) {
-    echo json_encode(array('success' => true, 'message' => 'Funcionario agregado correctamente'));
+if ($stmt->execute()) {
+    echo json_encode(array('success' => true, 'message' => 'Funcionario agregado con éxito.'));
 } else {
-    echo json_encode(array('success' => false, 'message' => 'Error al agregar funcionario: ' . mysqli_error($conexion)));
+    echo json_encode(array('success' => false, 'message' => 'Error al agregar funcionario: ' . $stmt->error));
 }
 
-// Cerrar la conexión a la base de datos
-mysqli_close($conexion);
+// Cerrar la declaración y la conexión a la base de datos
+$stmt->close();
+$conexion->close();
 ?>

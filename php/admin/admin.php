@@ -134,7 +134,7 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
     </div>
     <div class="bg-white p-8 rounded shadow-md w-full max-w-4xl mx-auto">
       <h2 class="text-2xl mb-4 text-center font-semibold">Agregar Nuevo Funcionario</h2>
-      <form id="addFuncionarioForm" class="w-full max-w-lg mx-auto">
+      <form id="addFuncionarioForm"  class="w-full max-w-lg mx-auto">
         <div class="mb-4">
           <label for="nombre" class="block text-gray-700 font-bold mb-2">Nombre:</label>
           <input type="text" id="nombre" name="nombre" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
@@ -151,7 +151,6 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
           <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Agregar Funcionario</button>
         </div>
       </form>
-
     </div>
 
   </section>
@@ -159,8 +158,8 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
   <script src="../../js/datatables.js"></script>
   <script src="../../js/tablaadmin.js"></script>
   <script>
-    $(document).ready(function() {
-      $('#addFuncionarioForm').submit(function(event) {
+$(document).ready(function() {
+    $('#addFuncionarioForm').submit(function(event) {
         event.preventDefault(); // Evitar que el formulario se envíe de forma tradicional
         // Obtener los valores de los campos del formulario
         var nombre = $('#nombre').val();
@@ -169,44 +168,60 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
 
         // Verificar si los campos están vacíos
         if (nombre.trim() === '' || rut.trim() === '' || pass.trim() === '') {
-          // Mostrar un mensaje de error
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Por favor, completa todos los campos.'
-          });
-          return; // Detener el envío del formulario
+            // Mostrar un mensaje de error
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Por favor, completa todos los campos.'
+            });
+            return; // Detener el envío del formulario
         }
 
         // Si los campos no están vacíos, enviar los datos al servidor
         var formData = {
-          nombre: nombre,
-          rut: rut,
-          pass: pass
+            nombre: nombre,
+            rut: rut,
+            pass: pass
         };
 
-
-
         $.ajax({
-          type: 'POST',
-          url: 'agregar_funcionarios.php', // Ruta al script PHP que procesará los datos
-          data: formData,
-          dataType: 'json',
-          success: function(response) {
-            // Mostrar un mensaje de éxito o error
-            if (response.success) {
-              // Éxito
-              alert(response.message);
-              // Aquí puedes recargar la tabla DataTable o realizar otras acciones necesarias
-            } else {
-              // Error
-              alert('Error: ' + response.message);
+            type: 'POST',
+            url: 'agregar_funcionarios.php', // Ruta al script PHP que procesará los datos
+            data: formData,
+            dataType: 'json',
+            success: function(response) {
+                // Mostrar un mensaje de éxito o error
+                if (response.success) {
+                    // Éxito
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Éxito',
+                        text: response.message
+                    }).then(() => {
+                        // Recargar la página
+                        window.location.reload();
+                    });
+                } else {
+                    // Error
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: response.message
+                    });
+                }
+            },
+            error: function() {
+                // Manejo de errores en caso de que la solicitud AJAX falle
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Hubo un problema con la solicitud. Inténtalo nuevamente.'
+                });
             }
-          }
         });
-      });
     });
-  </script>
+});
+</script>
 
 </body>
 

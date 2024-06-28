@@ -73,7 +73,7 @@ if (!isset($_SESSION['nombre'])) {
    
       <li>
         <a href="contactenos.php">
-          <i class='bx bxs-contact'></i>
+        <i class='bx bx-box'></i>
           <span class="link_name">Contactenos</span>
         </a>
        
