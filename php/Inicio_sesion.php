@@ -9,12 +9,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $name = $_POST["name"];
         $password = $_POST["password"];
 
-        $sql = "SELECT * FROM Funcionario WHERE nombre = '$name' AND pass = '$password'";
+        $sql = "SELECT *FROM Funcionario WHERE nombre = '$name' AND pass = '$password'";
         $resultado = $conexion->query($sql);
 
         if ($resultado->num_rows == 1) {
             $usuario = $resultado->fetch_assoc();
             $_SESSION['nombre'] = $usuario['nombre'];
+            $_SESSION['ID'] = $usuario['ID'];
             $_SESSION['rol'] = $usuario['rol'];
 
             if ($usuario['rol'] == 'admin') {

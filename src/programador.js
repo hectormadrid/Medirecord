@@ -2,26 +2,23 @@ const cron = require('node-cron');
 const { enviarMensaje } = require('./mensaje.js');
 const conectarBaseDatos = require('../js/Conexion.js');
 
-const MSG_SALUDOS = 'Hola, recuerde que mañana tiene hora ¿va a asistir? responda Si o No';
-const MSG_ASISTIRA = 'Perfecto, lo esperamos mañana';
-const MSG_NO_ASISTIRA = 'Gracias por responder';
+const MSG_SALUDOS = (nombre, dia, hora, especialidad) => `Hola ${nombre}, recuerde que tiene una cita el ${dia} a las ${hora} para ${especialidad}. ¿Va a asistir? Responda Si o No`;
+const MSG_ASISTIRA = 'Perfecto, lo esperamos en su cita.';
+const MSG_NO_ASISTIRA = 'Gracias por responder, intentaremos reprogramar su cita.';
 
 let respuestas = 0;
-let pacientesSinResponder = 0; // Variable para llevar un registro de los pacientes que no han respondido
+let pacientesSinResponder = 0;
 let connection;
 
 async function finalizarAplicacion(cliente) {
     try {
-        // Obtener el último ID_Envio
         const [lastEnvio] = await connection.execute(
-            'SELECT MAX(ID) as lastEnvio FROM Envio_Mensaje'
+            'SELECT MAX(ID) as lastEnvio FROM Historial_Mensajes'
         );
-
         const lastIdEnvio = lastEnvio[0].lastEnvio;
 
-        // Obtener los RUT de los pacientes que tienen estado 'Por Confirmar' para el último ID_Envio
         const [rows] = await connection.execute(
-            'SELECT Rut_Paciente FROM hora WHERE Asistencia = "Por Confirmar" AND ID_Envio = ?',
+            'SELECT Rut_Paciente FROM Hora WHERE Asistencia = "Por Confirmar" AND ID_Envio = ?',
             [lastIdEnvio]
         );
 
@@ -35,8 +32,8 @@ async function finalizarAplicacion(cliente) {
         }
 
         console.log('Finalizando la aplicación ');
-        cliente.destroy(); // Destruye la conexión con el cliente de WhatsApp
-        process.exit(); // Finaliza el proceso Node.js
+        cliente.destroy();
+        process.exit();
     } catch (error) {
         console.log('Error al finalizar la aplicación:', error);
     }
@@ -44,10 +41,12 @@ async function finalizarAplicacion(cliente) {
 
 async function obtenerPacientes() {
     try {
-        const [rows] = await connection.execute('SELECT rut, telefono FROM paciente');
+        const [rows] = await connection.execute(
+            'SELECT p.Rut, p.Telefono, p.Nombre, h.Dia, h.Hora_Agandada, h.Especialidad FROM Paciente p JOIN Hora h ON p.Rut = h.Rut_Paciente WHERE h.Asistencia = "Por Confirmar"'
+        );
         if (rows && rows.length > 0) {
-            pacientesSinResponder = rows.length; // Inicializar con la cantidad de pacientes
-            return rows.filter(row => validarNumeroTelefono(row.telefono));
+            pacientesSinResponder = rows.length;
+            return rows.filter(row => validarNumeroTelefono(row.Telefono));
         } else {
             console.log('No se encontraron pacientes en la consulta.');
             return [];
@@ -68,24 +67,19 @@ async function actualizarEstadoPaciente(rut, respuesta) {
     }
 
     try {
-        // Obtener el último ID_Envio
         const [lastEnvio] = await connection.execute(
-            'SELECT MAX(ID) as lastEnvio FROM Envio_Mensaje'
+            'SELECT MAX(ID) as lastEnvio FROM Historial_Mensajes'
         );
-
         const lastIdEnvio = lastEnvio[0].lastEnvio;
 
-        
         const [result] = await connection.execute(
-            'UPDATE hora SET Asistencia = ? WHERE Rut_Paciente = ? AND ID_Envio = ?',
+            'UPDATE Hora SET Asistencia = ? WHERE Rut_Paciente = ? AND ID_Envio = ?',
             [estado, rut, lastIdEnvio]
         );
 
         if (result && result.affectedRows > 0) {
-            console.log("||||||||||");
-            console.log(`La Asistencia del paciente con el RUT ${rut} se  Actualizo a ${estado}`);
-           
-            pacientesSinResponder--; // Decrementar la cantidad de pacientes sin responder
+            console.log(`La Asistencia del paciente con el RUT ${rut} se actualizó a ${estado}`);
+            pacientesSinResponder--;
         } else {
             console.log(`No se pudo actualizar el estado del paciente con RUT ${rut}`);
         }
@@ -94,10 +88,9 @@ async function actualizarEstadoPaciente(rut, respuesta) {
     }
 }
 
-
 async function programador_tareas(cliente) {
     connection = await conectarBaseDatos();
-// programar tarea para inicar el recordatorio 
+
     const tiempo = '0 55 19 * * *';
 
     if (cron.validate(tiempo)) {
@@ -107,8 +100,9 @@ async function programador_tareas(cliente) {
                 const pacientes = await obtenerPacientes();
 
                 for (const paciente of pacientes) {
-                    const numeroConFormato = '569' + paciente.telefono + '@c.us';
-                    await enviarMensaje(cliente, numeroConFormato, MSG_SALUDOS);
+                    const numeroConFormato = '569' + paciente.Telefono + '@c.us';
+                    const mensaje = MSG_SALUDOS(paciente.Nombre, paciente.Dia, paciente.Hora_Agandada, paciente.Especialidad);
+                    await enviarMensaje(cliente, numeroConFormato, mensaje);
                     console.log('Mensaje enviado a:', numeroConFormato);
                 }
             } catch (error) {
@@ -123,12 +117,11 @@ async function programador_tareas(cliente) {
                 console.log('Error al manejar la respuesta:', error);
             }
         });
-           // Programar tarea cron para finalizar la aplicación 
-           cron.schedule('0 05 20 * * *', () => {
+
+        cron.schedule('0 05 20 * * *', () => {
             finalizarAplicacion(cliente);
         });
     }
-    
 }
 
 async function manejarRespuesta(cliente, message) {
@@ -139,21 +132,21 @@ async function manejarRespuesta(cliente, message) {
         respuestas++;
 
         try {
-            const telefono = message.from.split('@')[0].slice(3); // Obtener el teléfono como string
-            const [rows] = await connection.execute('SELECT Rut FROM paciente WHERE Telefono = ?', [telefono]);
-            
+            const telefono = message.from.split('@')[0].slice(3);
+            const [rows] = await connection.execute('SELECT Rut FROM Paciente WHERE Telefono = ?', [telefono]);
+
             if (rows && rows.length > 0) {
                 const rut = rows[0].Rut;
                 await actualizarEstadoPaciente(rut, respuesta);
             } else {
                 console.log('No se encontró el paciente en la base de datos');
             }
-                // Verificar si todos los pacientes han respondido
-        if (pacientesSinResponder === 0) {
-            console.log('Todos los pacientes han respondido. Aplicación finalizada');
-            cliente.destroy();
-            process.exit();
-        }
+
+            if (pacientesSinResponder === 0) {
+                console.log('Todos los pacientes han respondido. Aplicación finalizada');
+                cliente.destroy();
+                process.exit();
+            }
         } catch (error) {
             console.log('Error en la consulta a la base de datos:', error);
         }

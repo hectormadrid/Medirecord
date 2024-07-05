@@ -1,16 +1,20 @@
 <?php
-require_once 'Conexion.php';
-if (isset($_POST["data"])) {
+session_start();
+require_once '../Conexion.php';
+
+
+if (isset($_POST["data"]) && isset($_SESSION['ID'])) {
     $data = json_decode($_POST["data"], true);
+     // Obtener el ID del funcionario desde la sesión
 
     if (!empty($data)) {
-        $ID_Usuario = 1234;
+        $ID_Usuario = $_SESSION['ID'];
         date_default_timezone_set('America/Santiago');
         $nuevaFechaHora = new DateTime();
         $nuevaFechaHora->add(new DateInterval('PT1M'));
         $fechaHoraActual = $nuevaFechaHora->format('Y-m-d H:i:s');
 
-        $sqlID = "SELECT MAX(ID) AS MaxID FROM Funcionario";
+        $sqlID = "SELECT MAX(ID) AS MaxID FROM Historial_Mensajes";
         $resultID = $conexion->query($sqlID);
 
         if ($resultID) {
@@ -18,15 +22,15 @@ if (isset($_POST["data"])) {
             $ID = $rowID["MaxID"];
             $ID++; // Incrementar el valor para el próximo ID
         } else {
-            // En caso de que no haya registros en Funcionario, establecer un valor inicial
+            // En caso de que no haya registros en Historial_Mensajes, establecer un valor inicial
             $ID = 1;
         }
 
-        // Insertar un nuevo registro en la tabla Funcionario
+        // Insertar un nuevo registro en la tabla Historial_Mensajes
         $sqlEnvio = "INSERT INTO Historial_Mensajes (ID, ID_funcionario,Hora_carga,Fecha_envio) VALUES ('$ID', '$ID_Usuario', NOW(), '$fechaHoraActual')";
 
         if ($conexion->query($sqlEnvio) !== TRUE) {
-            echo "Error al insertar datos en la tabla 'Funcionario': " . $conexion->error;
+            echo "Error al insertar datos en la tabla 'Historial_Mensajes': " . $conexion->error;
             exit();
         }
 
@@ -94,9 +98,9 @@ if (isset($_POST["data"])) {
         }
     }
 
-    $command = 'npm run dev';
+    /*$command = 'npm run dev';
 
-    $output = shell_exec($command);
+    $output = shell_exec($command);*/
 
     // Inicializa una cadena para almacenar la lista de pacientes actualizados
     $pacientesActualizadosStr = "";

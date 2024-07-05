@@ -195,7 +195,7 @@ if (!isset($_SESSION['nombre'])) {
 
 
   </section>
-  <script src="../../js/cargar.js"></script>
+  <script src="../../js//Cargar.js"></script>
   <script src="../../js/Menu_desplegable.js"></script>
   <script>
     function generarPDF() {
@@ -205,8 +205,7 @@ if (!isset($_SESSION['nombre'])) {
 </script>
 
   <?php
-  include('../cargabd.php');
-  
+  include('../cargabd.php')
   ?>
 
 </body>

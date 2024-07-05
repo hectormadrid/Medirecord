@@ -2,7 +2,7 @@ create database Medirecord;
 use Medirecord;
 
 create table Paciente(
-Rut varchar  (11) primary key ,
+Rut varchar  (10) primary key ,
 Nombre varchar (50),
 Telefono varchar(11) ,
 Corre_electronico varchar (50)
@@ -10,7 +10,7 @@ Corre_electronico varchar (50)
 
 create table Funcionario(
 ID int auto_increment primary key, 
-Rut varchar (9),
+Rut varchar (10),
 nombre varchar (30) , 
 Pass varchar (30) , 
 rol varchar (20)
@@ -25,10 +25,11 @@ foreign key (ID_funcionario) references Funcionario(ID)
 
 create table Comentarios (
 id int auto_increment primary key,
-Rut varchar (9),
+Rut varchar (10),
 nombre varchar(30),
-mensaje TEXT ,
-fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+mensaje text ,
+fecha timestamp default current_timestamp,
+revisado boolean default false
 
 );
 
@@ -44,13 +45,15 @@ Asistencia varchar (20),
 Fecha_envio datetime,
 ID_Envio int,
 foreign key (Rut_Paciente) references Paciente(rut),
-foreign key (ID_Envio) references Funcionario(ID)
+foreign key (ID_Envio) references Historial_Mensajes(ID)
 );
 
 -- drop database Medirecord;
 select * from paciente;
 select * from hora;
 select * from Funcionario;
+select * from Historial_Mensajes;
+select * from Comentarios;
 use Medirecord;
 -- update hora set Asistencia = "Por confirmar" where ID =2;
 
