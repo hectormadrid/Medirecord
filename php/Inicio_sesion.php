@@ -16,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $usuario = $resultado->fetch_assoc();
             $_SESSION['nombre'] = $usuario['nombre'];
             $_SESSION['ID'] = $usuario['ID'];
+            $_SESSION['rut'] = $usuario['rut'];
             $_SESSION['rol'] = $usuario['rol'];
 
             if ($usuario['rol'] == 'admin') {

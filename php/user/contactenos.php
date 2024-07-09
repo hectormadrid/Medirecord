@@ -94,16 +94,7 @@ $conexion->close();
             </li>
             <li>
             </li>
-            <li>
-                <div class="iocn-link">
-                    <a href="#">
-                        <i class='bx bx-book-alt'></i>
-                        <span class="link_name">Reportes</span>
-                    </a>
-                    <i class='bx bxs-chevron-down arrow'></i>
-                </div>
-              
-            </li>
+      
 
             <li>
                 <a href="#">
@@ -112,20 +103,7 @@ $conexion->close();
                 </a>
                
             </li>
-            <li>
-                <a href="#">
-                    <i class='bx bxs-edit-location'></i>
-                    <span class="link_name">Sedes</span>
-                </a>
-             
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-cog'></i>
-                    <span class="link_name">Configuración</span>
-                </a>
-             
-            </li>
+     
             <li>
                 <div class="profile-details">
 
@@ -159,7 +137,7 @@ $conexion->close();
                     </div>
                     <div class="mb-4">
                         <label for="Rut" class="block text-gray-700">Rut:</label>
-                        <input type="text" id="Rut" name="Rut" value="<?php echo ($rut); ?>" readonly required class="w-full px-3 py-2 border rounded">
+                        <input type="text" id="Rut" name="Rut" value="<?php echo htmlspecialchars($rut); ?>" readonly required class="w-full px-3 py-2 border rounded">
                     </div>
                     <div class="mb-4">
                         <label for="mensaje" class="block text-gray-700">Mensaje:</label>
@@ -175,8 +153,10 @@ $(document).ready(function() {
     $('#addContactenosForm').submit(function(event) {
         event.preventDefault(); // Evitar que el formulario se envíe de forma tradicional
         // Obtener los valores de los campos del formulario
+
+         var nombre = $('#nombre').val();
         var mensaje = $('#mensaje').val();
-        
+        var rut = $('#Rut').val(); 
         // Verificar si el campo está vacío
         if (mensaje.trim() === '') {
             // Mostrar un mensaje de error
@@ -190,6 +170,8 @@ $(document).ready(function() {
 
         // Si el campo no está vacío, enviar los datos al servidor
         var formData = {
+          nombre: nombre,
+                rut: rut,
             mensaje: mensaje
         };
 

@@ -69,32 +69,13 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
         </div>
       </li>
 
-      <li>
-        <a href="#">
-          <i class='bx bxs-contact'></i>
-          <span class="link_name">Contactenos</span>
-        </a>
-
-      </li>
-      <li>
-        <a href="#">
-          <i class='bx bxs-edit-location'></i>
-          <span class="link_name">Sedes</span>
-        </a>
-
-      </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-cog'></i>
-          <span class="link_name">Configuración</span>
-        </a>
-
-      </li>
+      
+     
       <li>
         <div class="profile-details">
           <div class="name-job  text-wrap overflow-hidden ">
             <div class="profile_name  ">
-              Usuario, <?php echo $_SESSION['nombre']; ?>!</div>
+               <?php echo $_SESSION['nombre']; ?>!</div>
           </div>
           <a href="../Inicio_sesion.php" class='inline-block bg-[#3664E4] hover:bg-red-800 text-white font-bold py-2 px-4 rounded mb-4  bx bx-log-out '> </a>
         </div>
