@@ -2,7 +2,14 @@ const cron = require('node-cron');
 const { enviarMensaje } = require('./mensaje.js');
 const conectarBaseDatos = require('../js/Conexion.js');
 
-const MSG_SALUDOS = (nombre, dia, hora, especialidad) => `Hola ${nombre}, recuerde que tiene una cita el ${dia} a las ${hora} para ${especialidad}. ¿Va a asistir? Responda Si o No`;
+const MSG_SALUDOS =  (nombre, dia, hora, especialidad) => `
+Hola ${nombre},
+Soy el sistema de Recordatorio de Horas Médicas de la Clinica. Queremos recordarle que tiene una cita programada para mañana, 
+${dia} a las ${hora} para una consulta de ${especialidad}.
+¿Podría confirmarnos su asistencia? Por favor, responda con "Sí" o "No".
+Saludos cordiales,
+Centro de Salud
+`;
 const MSG_ASISTIRA = 'Perfecto, lo esperamos en su cita.';
 const MSG_NO_ASISTIRA = 'Gracias por responder, intentaremos reprogramar su cita.';
 
@@ -91,7 +98,7 @@ async function actualizarEstadoPaciente(rut, respuesta) {
 async function programador_tareas(cliente) {
     connection = await conectarBaseDatos();
 
-    const tiempo = '0 55 19 * * *';
+    const tiempo = '0 00 19 * * *';
 
     if (cron.validate(tiempo)) {
         console.log('Cron inicializado');
@@ -118,7 +125,7 @@ async function programador_tareas(cliente) {
             }
         });
 
-        cron.schedule('0 05 20 * * *', () => {
+        cron.schedule('0 10 19 * * *', () => {
             finalizarAplicacion(cliente);
         });
     }

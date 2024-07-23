@@ -1,0 +1,15 @@
+2024/07/22-19:15:28.149 4e4c Reusing MANIFEST C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/07/22-19:15:28.149 4e4c Recovering log #88
+2024/07/22-19:15:28.212 4e4c Reusing old log C:\xampp\htdocs\Medirecord\Medirecord\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000088.log 
+2024/07/22-19:15:28.213 4e4c Delete type=2 #86
+2024/07/22-19:15:28.213 4e4c Delete type=2 #89
+2024/07/22-19:15:29.256 627c Level-0 table #93: started
+2024/07/22-19:15:29.268 627c Level-0 table #93: 536804 bytes OK
+2024/07/22-19:15:29.269 627c Delete type=0 #88
+2024/07/22-19:15:29.270 627c Manual compaction at level-0 from '\x00)\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00*\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/07/22-19:15:31.241 4e4c Compacting 1@1 + 1@2 files
+2024/07/22-19:15:31.295 4e4c Generated table #94@1: 33318 keys, 1132516 bytes
+2024/07/22-19:15:31.295 4e4c Compacted 1@1 + 1@2 files => 1132516 bytes
+2024/07/22-19:15:31.296 4e4c compacted to: files[ 0 0 1 0 0 0 0 ]
+2024/07/22-19:15:31.296 4e4c Delete type=2 #90
+2024/07/22-19:15:31.296 4e4c Delete type=2 #93

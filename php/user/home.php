@@ -53,51 +53,28 @@ if (!isset($_SESSION['nombre'])) {
       <span class="logo_name text-center" style='color:#ffffff'>Usuario</span>
     </div>
     <ul class="nav-links">
+      
       <li>
         <a href="home.php">
           <i class='bx bx-grid-alt'></i>
           <span class="link_name">Inicio</span>
         </a>
-       
       </li>
-      
-      <li>
-        <div class="iocn-link">
-          <a href="#">
-            <i class='bx bx-book-alt'></i>
-            <span class="link_name">Reportes</span>
-          </a>
-         
-        </div>
-      </li>
-   
+
       <li>
         <a href="contactenos.php">
-        <i class='bx bx-box'></i>
+          <i class='bx bx-box'></i>
           <span class="link_name">Contactenos</span>
         </a>
-       
+
       </li>
-      <li>
-        <a href="#">
-          <i class='bx bxs-edit-location'></i>
-          <span class="link_name">Sedes</span>
-        </a>
-       
-      </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-cog'></i>
-          <span class="link_name">Configuración</span>
-        </a>
-     
-      </li>
+
       <li>
         <div class="profile-details">
 
           <div class="name-job  text-wrap overflow-hidden ">
-            <div class="profile_name  "> 
-              
+            <div class="profile_name  ">
+
               Usuario: <?php echo $_SESSION['nombre']; ?>!</div>
           </div>
           <a href="../Inicio_sesion.php" class='inline-block bg-[#3664E4] hover:bg-red-800 text-white font-bold py-2 px-4 rounded mb-4  bx bx-log-out '> </a>
@@ -120,7 +97,7 @@ if (!isset($_SESSION['nombre'])) {
 
       <div class="container mx-auto max-w-lg mt-20 text-center">
         <h2 class="text-3xl font-semibold text-gray-800 mb-8">¡Bienvenido, <?php echo $_SESSION['nombre']; ?>!</h2>
-        
+
       </div>
 
       <div class="container mx-auto px-4 relative">
@@ -166,30 +143,30 @@ if (!isset($_SESSION['nombre'])) {
       </div>
 
       <div class="flex items-center justify-center font-sans font-bold text-center md:text-left break-normal text-indigo-500 px-2 py-4 md:py-8 text-xl md:text-2xl">
-      <p>Lista de Pacientes con numero mal ingresado o no ingresado </p>
-    </div>
-    <button onclick="generarPDF()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-3 md:px-4 rounded mb-2 md:mb-0 md:mr-2" id="generarpdf">Generar PDF</button>
+        <p>Lista de Pacientes con numero mal ingresado o no ingresado </p>
+      </div>
+      <button onclick="generarPDF()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-3 md:px-4 rounded mb-2 md:mb-0 md:mr-2" id="generarpdf">Generar PDF</button>
 
-    <div class="overflow-x-auto">
-      <table id="tabla_filas_omitidas" class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-        <thead class="bg-blue-500 text-white">
-          <tr>
-            <th scope="col" class="px-6 py-3 text-left font-bold">Codigo</th>
-            <th scope="col" class="px-6 py-3 text-left font-bold">Número</th>
-            <th scope="col" class="px-6 py-3 text-left font-bold">Nombre</th>
-            <th scope="col" class="px-6 py-3 text-left font-bold">Rut</th>
-            <th scope="col" class="px-6 py-3 text-left font-bold">Día</th>
-            <th scope="col" class="px-6 py-3 text-left font-bold">Hora</th>
-           
+      <div class="overflow-x-auto">
+        <table id="tabla_filas_omitidas" class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+          <thead class="bg-blue-500 text-white">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left font-bold">Codigo</th>
+              <th scope="col" class="px-6 py-3 text-left font-bold">Número</th>
+              <th scope="col" class="px-6 py-3 text-left font-bold">Nombre</th>
+              <th scope="col" class="px-6 py-3 text-left font-bold">Rut</th>
+              <th scope="col" class="px-6 py-3 text-left font-bold">Día</th>
+              <th scope="col" class="px-6 py-3 text-left font-bold">Hora</th>
 
-          </tr>
-        </thead>
-        <tbody class="bg-blue-100 divide-y divide-blue-200">
-        </tbody>
-      </table>
-    </div>
 
-        
+            </tr>
+          </thead>
+          <tbody class="bg-blue-100 divide-y divide-blue-200">
+          </tbody>
+        </table>
+      </div>
+
+
     </div>
 
 
@@ -199,10 +176,10 @@ if (!isset($_SESSION['nombre'])) {
   <script src="../../js/Menu_desplegable.js"></script>
   <script>
     function generarPDF() {
-        // Redireccionar a tu archivo PHP que genera el PDF
-   //     window.location.href = 'generarpdf.php';
+      // Redireccionar a tu archivo PHP que genera el PDF
+      //     window.location.href = 'generarpdf.php';
     }
-</script>
+  </script>
 
   <?php
   include('../cargabd.php')

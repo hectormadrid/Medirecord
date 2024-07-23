@@ -20,7 +20,6 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
   <!-- DataTables CSS -->
   <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
 
-
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
@@ -75,7 +74,7 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
         <div class="profile-details">
           <div class="name-job  text-wrap overflow-hidden ">
             <div class="profile_name  ">
-               <?php echo $_SESSION['nombre']; ?>!</div>
+              <?php echo $_SESSION['nombre']; ?>!</div>
           </div>
           <a href="../Inicio_sesion.php" class='inline-block bg-[#3664E4] hover:bg-red-800 text-white font-bold py-2 px-4 rounded mb-4  bx bx-log-out '> </a>
         </div>
@@ -130,7 +129,7 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
         </div>
         <div class="flex items-center justify-between">
           <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Agregar Funcionario</button>
-        </div>
+        </div> 
       </form>
     </div>
 
