@@ -29,7 +29,7 @@ $html = '
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Datos de la Tabla</title>
+    <title>Datos de pacientes con numero erroneo</title>
     <style>
         body { font-family: Arial, sans-serif; }
         table { width: 100%; border-collapse: collapse; }
@@ -87,6 +87,11 @@ $dompdf->setPaper('A4', 'landscape');
 // Renderizar el HTML como PDF
 $dompdf->render();
 
+// Salida del PDF generado al navegador para visualizarlo en una nueva pestaña o ventana
+header('Content-Type: application/pdf');
+header('Content-Disposition: inline; filename="tabla_datos.pdf"');
+header('Cache-Control: private, max-age=0, must-revalidate');
+header('Pragma: public');
 // Salida del PDF generado al navegador (descargar o ver en línea)
 $dompdf->stream("tabla_datos.pdf", array("Attachment" => 0));
 ?>

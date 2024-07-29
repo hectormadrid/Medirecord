@@ -20,7 +20,6 @@ if (!isset($_SESSION['nombre'])) {
   <!-- DataTables CSS -->
   <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
 
-
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
@@ -40,9 +39,6 @@ if (!isset($_SESSION['nombre'])) {
   <!-- xlsx -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
 
-  <!-- Bootstrap JS -->
-
-
 </head>
 
 <body class="bg-gray-100 text-gray-900 tracking-wider leading-normal overflow-hidden">
@@ -53,61 +49,53 @@ if (!isset($_SESSION['nombre'])) {
       <span class="logo_name text-center" style='color:#ffffff'>Usuario</span>
     </div>
     <ul class="nav-links">
-      
       <li>
         <a href="home.php">
           <i class='bx bx-grid-alt'></i>
           <span class="link_name">Inicio</span>
         </a>
       </li>
-
       <li>
         <a href="contactenos.php">
           <i class='bx bx-box'></i>
           <span class="link_name">Contactenos</span>
         </a>
-
       </li>
-
       <li>
         <div class="profile-details">
-
-          <div class="name-job  text-wrap overflow-hidden ">
-            <div class="profile_name  ">
-
-              Usuario: <?php echo $_SESSION['nombre']; ?>!</div>
+          <div class="name-job text-wrap overflow-hidden">
+            <div class="profile_name">
+              Usuario: <?php echo $_SESSION['nombre']; ?>!
+            </div>
           </div>
-          <a href="../Inicio_sesion.php" class='inline-block bg-[#3664E4] hover:bg-red-800 text-white font-bold py-2 px-4 rounded mb-4  bx bx-log-out '> </a>
+          <a href="../Inicio_sesion.php" class='inline-block bg-[#3664E4] hover:bg-red-800 text-white font-bold py-2 px-4 rounded mb-4 bx bx-log-out'> </a>
         </div>
       </li>
     </ul>
   </div>
-  <section class="home-section  overflow-y-auto ">
+  <section class="home-section overflow-y-auto">
     <div class="home-content fixed">
       <i class='bx bx-menu '></i>
       <span class="text">Menu</span>
     </div>
 
     <div class="container mx-auto px-4">
-
-      <h1 class="  text-4xl md:text-5xl text-center font-serif font-bold text-black-500 mb-6 mt-6">
+      <h1 class="text-4xl md:text-5xl text-center font-serif font-bold text-black-500 mb-6 mt-6">
         Bienvenido al Sistema de Recordatorio de Citas Médicas
       </h1>
 
-
       <div class="container mx-auto max-w-lg mt-20 text-center">
         <h2 class="text-3xl font-semibold text-gray-800 mb-8">¡Bienvenido, <?php echo $_SESSION['nombre']; ?>!</h2>
-
       </div>
 
       <div class="container mx-auto px-4 relative">
-        <div class="cargaExel bg-blue-100 border-b-4 border-green-600 rounded-lg p-4 md:p-6 shadow-md ">
+        <div class="cargaExel bg-blue-100 border-b-4 border-green-600 rounded-lg p-4 md:p-6 shadow-md">
           <label for="excelFile" class="block text-lg font-semibold mb-2">Cargar archivo Excel:</label>
           <input class="block w-full py-2 px-3 md:px-4 mb-3 md:mb-4 rounded-md border border-gray-300" type="file" id="excelFile" accept=".xls, .xlsx">
           <button onclick="cargarExcel()" class="static block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-3 md:px-4 rounded mb-2 md:mb-0 md:mr-2">
             Cargar Excel
           </button>
-          <button class="block w-full md:w-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-5 md:px-4 absolute  right-10 top-28 rounded" id="guardarDatosBtn">
+          <button class="block w-full md:w-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-5 md:px-4 absolute right-10 top-28 rounded" id="guardarDatosBtn">
             Enviar Mensaje
           </button>
         </div>
@@ -136,14 +124,13 @@ if (!isset($_SESSION['nombre'])) {
             </tr>
           </thead>
           <tbody class="bg-blue-100 divide-y divide-blue-200">
-
+            <!-- Los datos de pacientes se insertarán aquí -->
           </tbody>
         </table>
-
       </div>
 
       <div class="flex items-center justify-center font-sans font-bold text-center md:text-left break-normal text-indigo-500 px-2 py-4 md:py-8 text-xl md:text-2xl">
-        <p>Lista de Pacientes con numero mal ingresado o no ingresado </p>
+        <p>Lista de Pacientes con número mal ingresado o no ingresado</p>
       </div>
       <button onclick="generarPDF()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-3 md:px-4 rounded mb-2 md:mb-0 md:mr-2" id="generarpdf">Generar PDF</button>
 
@@ -157,29 +144,21 @@ if (!isset($_SESSION['nombre'])) {
               <th scope="col" class="px-6 py-3 text-left font-bold">Rut</th>
               <th scope="col" class="px-6 py-3 text-left font-bold">Día</th>
               <th scope="col" class="px-6 py-3 text-left font-bold">Hora</th>
-
-
             </tr>
           </thead>
           <tbody class="bg-blue-100 divide-y divide-blue-200">
+            <!-- Los datos de pacientes se insertarán aquí -->
           </tbody>
         </table>
       </div>
-
-
     </div>
-
-
-
+  
   </section>
-  <script src="../../js//Cargar.js"></script>
+
+  <script src="../../js/Cargar.js"></script>
   <script src="../../js/Menu_desplegable.js"></script>
-  <script>
-    function generarPDF() {
-      // Redireccionar a tu archivo PHP que genera el PDF
-      //     window.location.href = 'generarpdf.php';
-    }
-  </script>
+
+ 
 
   <?php
   include('../cargabd.php')

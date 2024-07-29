@@ -127,9 +127,9 @@ if (isset($_POST["data"]) && isset($_SESSION['ID'])) {
 
             $command = 'npm run dev';
 
-            /*$output = shell_exec($command);
+            $output = shell_exec($command);
 
-            $pacientesActualizadosStr = "";*/
+            $pacientesActualizadosStr = "";
 
             
             if (!empty($pacientesActualizacion)) {

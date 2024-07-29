@@ -105,7 +105,6 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'admin') {
               </tr>
             </thead>
             <tbody id="funcionariosTableBody" class="bg-blue-100 divide-y divide-blue-200">
-
             </tbody>
           </table>
         </div>

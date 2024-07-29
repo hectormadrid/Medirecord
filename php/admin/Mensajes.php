@@ -83,7 +83,7 @@ if ($result === false) {
 
                 <div class="name-job  text-wrap overflow-hidden ">
                     <div class="profile_name  ">
-                         <?php echo $_SESSION['nombre']; ?>!</div>
+                        <?php echo $_SESSION['nombre']; ?>!</div>
                 </div>
                 <a href="../Inicio_sesion.php" class='inline-block bg-[#3664E4] hover:bg-red-800 text-white font-bold py-2 px-4 rounded mb-4  bx bx-log-out '> </a>
             </div>

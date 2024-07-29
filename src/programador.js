@@ -2,14 +2,15 @@ const cron = require('node-cron');
 const { enviarMensaje } = require('./mensaje.js');
 const conectarBaseDatos = require('../js/Conexion.js');
 
-const MSG_SALUDOS =  (nombre, dia, hora, especialidad) => `
+const MSG_SALUDOS = (nombre, dia, hora, especialidad) => `
 Hola ${nombre},
-Soy el sistema de Recordatorio de Horas Médicas de la Clinica. Queremos recordarle que tiene una cita programada para mañana, 
-${dia} a las ${hora} para una consulta de ${especialidad}.
-¿Podría confirmarnos su asistencia? Por favor, responda con "Sí" o "No".
+Buenos días,
+Soy el sistema de Recordatorio de Horas Médicas de la Clínica. Queremos recordarle que tiene una cita programada para mañana, ${dia} a las ${hora}, para una consulta de ${especialidad}.
+Por favor, confirme su asistencia respondiendo a este mensaje con "Sí" o "No". Recuerde que debe responder antes de las 17:30 de hoy.
 Saludos cordiales,
 Centro de Salud
 `;
+
 const MSG_ASISTIRA = 'Perfecto, lo esperamos en su cita.';
 const MSG_NO_ASISTIRA = 'Gracias por responder, intentaremos reprogramar su cita.';
 
@@ -38,7 +39,7 @@ async function finalizarAplicacion(cliente) {
             console.log('Todos los pacientes han respondido.');
         }
 
-        console.log('Finalizando la aplicación ');
+        console.log('Finalizando la aplicación');
         cliente.destroy();
         process.exit();
     } catch (error) {
@@ -95,10 +96,11 @@ async function actualizarEstadoPaciente(rut, respuesta) {
     }
 }
 
-async function programador_tareas(cliente) {
+async function programador_tareas(io) {
     connection = await conectarBaseDatos();
 
     const tiempo = '0 00 19 * * *';
+    io.emit('programa_en_funcionamiento', 'El programa está en funcionamiento');
 
     if (cron.validate(tiempo)) {
         console.log('Cron inicializado');
@@ -125,11 +127,13 @@ async function programador_tareas(cliente) {
             }
         });
 
-        cron.schedule('0 10 19 * * *', () => {
-            finalizarAplicacion(cliente);
+        cron.schedule('0 10 19 * * *', async () => {
+            await finalizarAplicacion(cliente);
+            io.emit('programa_finalizado', 'El programa ha finalizado');
         });
     }
 }
+
 
 async function manejarRespuesta(cliente, message) {
     const respuesta = message.body.toLowerCase();
